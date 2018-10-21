@@ -1,29 +1,47 @@
 package cz.muni.fi.pa165.project.entity;
 
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * TODO: create javadoc *
  *
- * @author Patrik Majercik
+ * @author Patrik Majercik, Tomas Terem
  */
 @Getter
 @Setter
 @EqualsAndHashCode
+@Entity
+@Table(name = "Person")
 public class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Setter(AccessLevel.NONE)
-    private long id;
+    private Long id;
+
+    @NotNull
+    @Column(nullable = false)
     private Address address;
+
+    @NotNull
+    @Column(nullable = false)
+    @Length(min = 3, max = 30)
     private String name;
+
+    @NotNull
+    @Column(nullable = false)
+    @Pattern(regexp = "^\\+\\d{12}$")
     private String phoneNumber;
+
+    @NotNull
+    @Column(nullable = false)
+    @Email
     private String email;
 }

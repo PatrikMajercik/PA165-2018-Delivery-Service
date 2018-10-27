@@ -6,6 +6,8 @@
 package cz.muni.fi.pa165.project.dao;
 
 import cz.muni.fi.pa165.project.entity.Delivery;
+
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -18,27 +20,27 @@ public interface DeliveryDao {
      * Creates new delivery
      * @param delivery to create
      */
-    void create(Delivery delivery);
+    void create(@NotNull Delivery delivery);
     
     /**
      * Updates delivery
      * @param delivery to update
      * @return updated delivery
      */
-    Delivery update(Delivery delivery);
+    Delivery update(@NotNull Delivery delivery);
     
     /**
      * Deletes delivery
      * @param delivery to delete
      */
-    void delete(Delivery delivery);
+    void delete(@NotNull Delivery delivery);
     
     /**
      * Finds delivery by Id
      * @param id of the delivery
      * @return delivery with id "id"(if exists)
      */
-    Delivery findById(long id);
+    Delivery findById(@NotNull long id);
     
     /**
      * Finds all deliveries

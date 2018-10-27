@@ -26,7 +26,7 @@ public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Setter(AccessLevel.NONE)
-    private long id;
+    private Long id;
 
     private DeliveryState deliveryState;
     private Date ordered;

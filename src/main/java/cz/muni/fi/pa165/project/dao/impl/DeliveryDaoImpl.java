@@ -6,39 +6,62 @@
 package cz.muni.fi.pa165.project.dao.impl;
 
 import cz.muni.fi.pa165.project.entity.Delivery;
+
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
+
 import cz.muni.fi.pa165.project.dao.DeliveryDao;
 
 /**
- *
  * @author Jakub Gavlas
  */
-public class DeliveryDaoImpl implements DeliveryDao{
+public class DeliveryDaoImpl implements DeliveryDao {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(@NotNull Delivery delivery) {
+        if (delivery == null) {
+            throw new IllegalArgumentException("delivery is null");
+        }
+        if (delivery.getId() != null) {
+            throw new ValidationException("delivery id cannot be set before creation");
+        }
         em.persist(delivery);
     }
 
     @Override
     public Delivery update(@NotNull Delivery delivery) {
+        if (delivery == null) {
+            throw new IllegalArgumentException("delivery is null");
+        }
+        if (delivery.getId() != null) {
+            throw new ValidationException("delivery id is null");
+        }
         return em.merge(delivery);
     }
 
     @Override
     public void delete(@NotNull Delivery delivery) {
+        if (delivery == null) {
+            throw new IllegalArgumentException("delivery is null");
+        }
+        if (delivery.getId() != null) {
+            throw new ValidationException("delivery id is null");
+        }
         em.remove(delivery);
     }
 
     @Override
-    public Delivery findById(@NotNull long id) {
+    public Delivery findById(@NotNull Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("id is null");
+        }
         return em.find(Delivery.class, id);
     }
 
@@ -46,6 +69,6 @@ public class DeliveryDaoImpl implements DeliveryDao{
     public List<Delivery> findAll() {
         return Collections.unmodifiableList(em.createQuery("SELECT d FROM Delivery d", Delivery.class).getResultList());
     }
-    
-    
+
+
 }

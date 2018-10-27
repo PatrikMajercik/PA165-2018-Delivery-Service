@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.project.dao;
 
 import cz.muni.fi.pa165.project.entity.Address;
 
+import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -14,6 +15,8 @@ public interface AddressDao {
      * Create new address in database
      *
      * @param address address to create
+     * @throws IllegalArgumentException             if address is null
+     * @throws ValidationException if address id is not null
      */
     void create(@NotNull Address address);
 
@@ -21,6 +24,8 @@ public interface AddressDao {
      * Updates given address in database
      *
      * @param address address to update
+     * @throws IllegalArgumentException             if address is null
+     * @throws ValidationException if address id is null
      */
     void update(@NotNull Address address);
 
@@ -28,6 +33,8 @@ public interface AddressDao {
      * Removes given address from database
      *
      * @param address address to delete
+     * @throws IllegalArgumentException             if address is null
+     * @throws ValidationException if address id is null
      */
     void delete(@NotNull Address address);
 
@@ -36,6 +43,7 @@ public interface AddressDao {
      *
      * @param id id to search for
      * @return address with given id
+     * @throws IllegalArgumentException             if id is null
      */
     Address findById(@NotNull Long id);
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -20,21 +21,43 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public void create(@NotNull Address address) {
+        if (address == null) {
+            throw new IllegalArgumentException("address is null");
+        }
+        if (address.getId() != null) {
+            throw new ValidationException("address id cannot be set before creation");
+        }
         entityManager.persist(address);
     }
 
     @Override
     public void update(@NotNull Address address) {
+        if (address == null) {
+            throw new IllegalArgumentException("address is null");
+        }
+        if (address.getId() == null) {
+            throw new ValidationException("address id is null");
+        }
+
         entityManager.merge(address);
     }
 
     @Override
     public void delete(@NotNull Address address) {
+        if (address == null) {
+            throw new IllegalArgumentException("address is null");
+        }
+        if (address.getId() == null) {
+            throw new ValidationException("address id is null");
+        }
         entityManager.remove(findById(address.getId()));
     }
 
     @Override
     public Address findById(@NotNull Long id) {
+        if (id == null) {
+            throw new ValidationException("id is null");
+        }
         return entityManager.find(Address.class, id);
     }
 

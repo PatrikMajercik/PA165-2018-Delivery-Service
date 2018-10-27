@@ -18,22 +18,27 @@ public class AddressDaoImpl implements AddressDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Override
     public void create(@NotNull Address address) {
         entityManager.persist(address);
     }
 
+    @Override
     public void update(@NotNull Address address) {
         entityManager.merge(address);
     }
 
+    @Override
     public void delete(@NotNull Address address) {
         entityManager.remove(findById(address.getId()));
     }
 
+    @Override
     public Address findById(@NotNull Long id) {
         return entityManager.find(Address.class, id);
     }
 
+    @Override
     public List<Address> findAll() {
         return entityManager.createQuery("SELECT a FROM Address a", Address.class)
                 .getResultList();

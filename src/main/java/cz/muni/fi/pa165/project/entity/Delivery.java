@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 /**
  * TODO: create javadoc *
@@ -22,17 +25,42 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
+@Entity
 public class Delivery {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Setter(AccessLevel.NONE)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
+    @Enumerated
     private DeliveryState deliveryState;
+    
+    @NotNull
+    @Column(nullable = false)
     private LocalDateTime ordered;
+    
+    @NotNull
+    @Column(nullable = false)
     private LocalDateTime delivered;
+    
+    @NotNull
+    @Column(nullable = false)
     private BigDecimal price;
+    
+    @NotNull
+    @Column(nullable = false)
+    @ManyToOne
     private Person courier;
+    
+    @NotNull
+    @Column(nullable = false)
+    @ManyToOne
     private Person customer;
+    
+    @NotNull
+    @Column(nullable = false)
+    @OneToOne
     private List<Article> articles;
 }

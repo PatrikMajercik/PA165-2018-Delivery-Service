@@ -28,7 +28,6 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Setter(AccessLevel.NONE)
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)

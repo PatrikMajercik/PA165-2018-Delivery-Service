@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * TODO: create javadoc *
@@ -21,10 +23,16 @@ import java.math.BigDecimal;
 @Setter
 @EqualsAndHashCode
 public class Article {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Setter(AccessLevel.NONE)
     private Long id;
+    
+    @NotNull
+    @Column(nullable = false)
     private String name;
+    
+    @NotNull
+    @Column(nullable = false)
     private BigDecimal weight;
 }

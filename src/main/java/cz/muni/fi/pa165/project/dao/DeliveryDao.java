@@ -22,38 +22,38 @@ public interface DeliveryDao {
      * Creates new delivery
      *
      * @param delivery to create
-     * @throws IllegalArgumentException             if delivery is null
-     * @throws ValidationException if delivery id is not null
+     * @throws IllegalArgumentException if delivery is null
+     * @throws ValidationException      if delivery id is not null
      */
-    void create(@NotNull Delivery delivery);
+    void create(@NotNull Delivery delivery) throws IllegalArgumentException, ValidationException;
 
     /**
      * Updates delivery
      *
      * @param delivery to update
      * @return updated delivery
-     * @throws IllegalArgumentException             if delivery is null
-     * @throws ValidationException if delivery id is null
+     * @throws IllegalArgumentException if delivery is null
+     * @throws ValidationException      if delivery id is null
      */
-    Delivery update(@NotNull Delivery delivery);
+    Delivery update(@NotNull Delivery delivery) throws IllegalArgumentException, ValidationException;
 
     /**
      * Deletes delivery
      *
      * @param delivery to delete
-     * @throws IllegalArgumentException             if delivery is null
-     * @throws ValidationException if delivery id is null
+     * @throws IllegalArgumentException if delivery is null
+     * @throws ValidationException      if delivery id is null
      */
-    void delete(@NotNull Delivery delivery);
+    void delete(@NotNull Delivery delivery) throws IllegalArgumentException, ValidationException;
 
     /**
      * Finds delivery by Id
      *
      * @param id of the delivery
      * @return delivery with id "id"(if exists)
-     * @throws IllegalArgumentException             if id is null
+     * @throws IllegalArgumentException if id is null
      */
-    Delivery findById(@NotNull Long id);
+    Delivery findById(@NotNull Long id) throws IllegalArgumentException;
 
     /**
      * Finds all deliveries

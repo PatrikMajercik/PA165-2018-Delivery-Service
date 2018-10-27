@@ -16,28 +16,28 @@ public interface PersonDao {
      * Create new person in database
      *
      * @param person person to create
-     * @throws IllegalArgumentException             if person is null
-     * @throws ValidationException if person id is not null
+     * @throws IllegalArgumentException if person is null
+     * @throws ValidationException      if person id is not null
      */
-    void create(@NotNull Person person);
+    void create(@NotNull Person person) throws IllegalArgumentException, ValidationException;
 
     /**
      * Updates given person in database
      *
      * @param person person to update
-     * @throws IllegalArgumentException             if person is null
-     * @throws ValidationException if person id is null
+     * @throws IllegalArgumentException if person is null
+     * @throws ValidationException      if person id is null
      */
-    void update(@NotNull Person person);
+    void update(@NotNull Person person) throws IllegalArgumentException, ValidationException;
 
     /**
      * Removes given person from database
      *
      * @param person person to delete
-     * @throws IllegalArgumentException             if person is null
-     * @throws ValidationException if person id is null
+     * @throws IllegalArgumentException if person is null
+     * @throws ValidationException      if person id is null
      */
-    void delete(@NotNull Person person);
+    void delete(@NotNull Person person) throws IllegalArgumentException, ValidationException;
 
     /**
      * Return specific person based on their unique id
@@ -46,7 +46,7 @@ public interface PersonDao {
      * @return person with given id
      * @throws IllegalArgumentException if id is null
      */
-    Person findById(@NotNull Long id);
+    Person findById(@NotNull Long id) throws IllegalArgumentException;
 
     /**
      * Return all people with given name in database
@@ -55,7 +55,7 @@ public interface PersonDao {
      * @throws IllegalArgumentException if name is null
      * @throws IllegalArgumentException if name is empty
      */
-    List<Person> findPersonByName(@NotNull @NotBlank String name);
+    List<Person> findPersonByName(@NotNull @NotBlank String name) throws IllegalArgumentException;
 
     /**
      * Return all people with given email in database
@@ -64,7 +64,7 @@ public interface PersonDao {
      * @throws IllegalArgumentException if email is null
      * @throws IllegalArgumentException if email is empty
      */
-    List<Person> findPersonByEmail(@NotNull @NotBlank String email);
+    List<Person> findPersonByEmail(@NotNull @NotBlank String email) throws IllegalArgumentException;
 
     /**
      * Return all people in database

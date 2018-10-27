@@ -20,7 +20,7 @@ public class AddressDaoImpl implements AddressDao {
     private EntityManager entityManager;
 
     @Override
-    public void create(@NotNull Address address) {
+    public void create(@NotNull Address address) throws IllegalArgumentException, ValidationException {
         if (address == null) {
             throw new IllegalArgumentException("address is null");
         }
@@ -31,7 +31,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public void update(@NotNull Address address) {
+    public void update(@NotNull Address address) throws IllegalArgumentException, ValidationException {
         if (address == null) {
             throw new IllegalArgumentException("address is null");
         }
@@ -43,7 +43,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public void delete(@NotNull Address address) {
+    public void delete(@NotNull Address address) throws IllegalArgumentException, ValidationException {
         if (address == null) {
             throw new IllegalArgumentException("address is null");
         }
@@ -54,7 +54,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public Address findById(@NotNull Long id) {
+    public Address findById(@NotNull Long id) throws IllegalArgumentException {
         if (id == null) {
             throw new ValidationException("id is null");
         }

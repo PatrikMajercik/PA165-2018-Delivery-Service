@@ -25,7 +25,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
     private EntityManager em;
 
     @Override
-    public void create(@NotNull Delivery delivery) {
+    public void create(@NotNull Delivery delivery) throws IllegalArgumentException, ValidationException {
         if (delivery == null) {
             throw new IllegalArgumentException("delivery is null");
         }
@@ -36,7 +36,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
     }
 
     @Override
-    public Delivery update(@NotNull Delivery delivery) {
+    public Delivery update(@NotNull Delivery delivery) throws IllegalArgumentException, ValidationException {
         if (delivery == null) {
             throw new IllegalArgumentException("delivery is null");
         }
@@ -47,7 +47,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
     }
 
     @Override
-    public void delete(@NotNull Delivery delivery) {
+    public void delete(@NotNull Delivery delivery) throws IllegalArgumentException, ValidationException {
         if (delivery == null) {
             throw new IllegalArgumentException("delivery is null");
         }
@@ -58,7 +58,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
     }
 
     @Override
-    public Delivery findById(@NotNull Long id) {
+    public Delivery findById(@NotNull Long id) throws IllegalArgumentException {
         if (id == null) {
             throw new IllegalArgumentException("id is null");
         }

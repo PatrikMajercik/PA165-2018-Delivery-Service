@@ -25,7 +25,7 @@ public class ArticleDaoImpl implements ArticleDao {
     private EntityManager em;
 
     @Override
-    public void create(@NotNull Article article) {
+    public void create(@NotNull Article article) throws IllegalArgumentException, ValidationException {
         if (article == null) {
             throw new IllegalArgumentException("article is null");
         }
@@ -36,7 +36,7 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public Article update(@NotNull Article article) {
+    public Article update(@NotNull Article article) throws IllegalArgumentException, ValidationException {
 
         if (article == null) {
             throw new IllegalArgumentException("article is null");
@@ -48,7 +48,7 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public void delete(@NotNull Article article) {
+    public void delete(@NotNull Article article) throws IllegalArgumentException, ValidationException {
         if (article == null) {
             throw new IllegalArgumentException("article is null");
         }
@@ -60,7 +60,7 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public Article findById(@NotNull Long id) {
+    public Article findById(@NotNull Long id) throws IllegalArgumentException {
         if (id == null) {
             throw new IllegalArgumentException("id is null");
         }

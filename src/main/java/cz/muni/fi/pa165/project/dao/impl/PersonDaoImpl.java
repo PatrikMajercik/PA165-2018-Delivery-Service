@@ -22,7 +22,7 @@ public class PersonDaoImpl implements PersonDao {
     private EntityManager entityManager;
 
     @Override
-    public void create(@NotNull Person person) {
+    public void create(@NotNull Person person) throws IllegalArgumentException, ValidationException {
         if (person == null) {
             throw new IllegalArgumentException("person is null");
         }
@@ -33,7 +33,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public void update(@NotNull Person person) {
+    public void update(@NotNull Person person) throws IllegalArgumentException, ValidationException {
         if (person == null) {
             throw new IllegalArgumentException("person is null");
         }
@@ -44,7 +44,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public void delete(@NotNull Person person) {
+    public void delete(@NotNull Person person) throws IllegalArgumentException, ValidationException {
         if (person == null) {
             throw new IllegalArgumentException("person is null");
         }
@@ -55,7 +55,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public Person findById(@NotNull Long id) {
+    public Person findById(@NotNull Long id) throws IllegalArgumentException {
         if (id == null) {
             throw new IllegalArgumentException("id is null");
         }
@@ -63,7 +63,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public List<Person> findPersonByName(@NotBlank @NotNull String name) {
+    public List<Person> findPersonByName(@NotBlank @NotNull String name) throws IllegalArgumentException {
         if (name == null) {
             throw new IllegalArgumentException("name is null");
         }
@@ -76,7 +76,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public List<Person> findPersonByEmail(@NotBlank @NotNull String email) {
+    public List<Person> findPersonByEmail(@NotBlank @NotNull String email) throws IllegalArgumentException {
         if (email == null) {
             throw new IllegalArgumentException("email is null");
         }

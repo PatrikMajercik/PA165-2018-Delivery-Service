@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -22,33 +23,66 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public void create(@NotNull Person person) {
+        if (person == null) {
+            throw new IllegalArgumentException("person is null");
+        }
+        if (person.getId() != null) {
+            throw new ValidationException("person id cannot be set before creation");
+        }
         entityManager.persist(person);
     }
 
     @Override
     public void update(@NotNull Person person) {
+        if (person == null) {
+            throw new IllegalArgumentException("person is null");
+        }
+        if (person.getId() == null) {
+            throw new ValidationException("person id null");
+        }
         entityManager.merge(person);
     }
 
     @Override
     public void delete(@NotNull Person person) {
+        if (person == null) {
+            throw new IllegalArgumentException("person is null");
+        }
+        if (person.getId() == null) {
+            throw new ValidationException("person id null");
+        }
         entityManager.remove(findById(person.getId()));
     }
 
     @Override
     public Person findById(@NotNull Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("id is null");
+        }
         return entityManager.find(Person.class, id);
     }
 
     @Override
-    public List<Person> findPersonByName(@NotBlank String name) {
+    public List<Person> findPersonByName(@NotBlank @NotNull String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("name is null");
+        }
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("name is empty");
+        }
         return entityManager.createQuery("SELECT p FROM Person p WHERE name=:name",
                 Person.class).setParameter("name", name).getResultList();
 
     }
 
     @Override
-    public List<Person> findPersonByEmail(@NotBlank String email) {
+    public List<Person> findPersonByEmail(@NotBlank @NotNull String email) {
+        if (email == null) {
+            throw new IllegalArgumentException("email is null");
+        }
+        if (email.isEmpty()) {
+            throw new IllegalArgumentException("email is empty");
+        }
         return entityManager.createQuery("SELECT p FROM Person p WHERE email=:email",
                 Person.class).setParameter("email", email).getResultList();
     }

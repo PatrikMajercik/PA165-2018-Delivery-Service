@@ -31,16 +31,13 @@ public class Person {
 
     @NotNull
     @Column(nullable = false)
-    @Length(min = 3, max = 30)
     private String name;
 
     @NotNull
     @Column(nullable = false)
-    @Pattern(regexp = "^\\+\\d{12}$")
     private String phoneNumber;
 
     @NotNull
     @Column(nullable = false)
-    @Email
     private String email;
 }

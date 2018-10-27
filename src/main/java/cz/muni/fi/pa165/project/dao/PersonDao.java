@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.project.dao;
 
 import cz.muni.fi.pa165.project.entity.Person;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -14,21 +15,21 @@ public interface PersonDao {
      *
      * @param person person to create
      */
-    void create(Person person);
+    void create(@NotNull Person person);
 
     /**
      * Updates given person in database
      *
      * @param person person to update
      */
-    void update(Person person);
+    void update(@NotNull Person person);
 
     /**
      * Removes given person from database
      *
      * @param person person to delete
      */
-    void delete(Person person);
+    void delete(@NotNull Person person);
 
     /**
      * Return specific person based on their unique id
@@ -36,21 +37,21 @@ public interface PersonDao {
      * @param id id to search for
      * @return person with given id
      */
-    Person findById(Long id);
+    Person findById(@NotNull Long id);
 
     /**
      * Return all people with given name in database
      *
      * @return list of all people with given name in database
      */
-    List<Person> findPersonByName(String name);
+    List<Person> findPersonByName(@NotNull String name);
 
     /**
      * Return all people with given email in database
      *
      * @return list of all people with given email in database
      */
-    List<Person> findPersonByEmail(String email);
+    List<Person> findPersonByEmail(@NotNull String email);
 
     /**
      * Return all people in database

@@ -42,7 +42,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
         if (delivery == null) {
             throw new IllegalArgumentException("delivery is null");
         }
-        if (delivery.getId() != null) {
+        if (delivery.getId() == null) {
             throw new ValidationException("delivery id is null");
         }
         return em.merge(delivery);
@@ -53,7 +53,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
         if (delivery == null) {
             throw new IllegalArgumentException("delivery is null");
         }
-        if (delivery.getId() != null) {
+        if (delivery.getId() == null) {
             throw new ValidationException("delivery id is null");
         }
         em.remove(delivery);

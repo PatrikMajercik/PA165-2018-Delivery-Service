@@ -17,7 +17,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 /**
- * TODO: create javadoc *
+ * Delivery entity
  *
  * @author Patrik Majercik
  */

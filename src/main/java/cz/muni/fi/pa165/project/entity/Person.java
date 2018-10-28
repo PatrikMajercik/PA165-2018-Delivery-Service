@@ -4,15 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
 /**
- * TODO: create javadoc *
+ * Person entity
  *
  * @author Patrik Majercik, Tomas Terem
  */

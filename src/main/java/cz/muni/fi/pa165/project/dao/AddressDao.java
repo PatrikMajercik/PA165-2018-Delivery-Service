@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
+ * Interface for Address DAO
+ *
  * @author Tomas Terem
  */
 public interface AddressDao {

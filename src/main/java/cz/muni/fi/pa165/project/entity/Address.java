@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * TODO: create javadoc *
+ * Address entity
  *
  * @author Patrik Majercik, Tomas Terem
  */

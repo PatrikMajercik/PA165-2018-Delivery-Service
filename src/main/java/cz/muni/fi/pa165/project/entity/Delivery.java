@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -29,8 +29,8 @@ public class Delivery {
     private Long id;
 
     private DeliveryState deliveryState;
-    private Date ordered;
-    private Date delivered;
+    private LocalDateTime ordered;
+    private LocalDateTime delivered;
     private BigDecimal price;
     private Person courier;
     private Person customer;

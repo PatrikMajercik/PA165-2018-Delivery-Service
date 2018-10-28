@@ -21,6 +21,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     @NotNull

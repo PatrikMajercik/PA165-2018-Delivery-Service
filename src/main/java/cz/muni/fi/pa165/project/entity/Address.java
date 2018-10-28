@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 @Setter
 @EqualsAndHashCode
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address {
 
     @Id
@@ -35,7 +38,5 @@ public class Address {
     @NotNull
     @Column(nullable = false)
     private String streetNumber;
-
-    @OneToOne
-    private Person person;
+    
 }

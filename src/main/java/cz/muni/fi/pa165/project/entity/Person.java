@@ -9,6 +9,8 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
+import java.io.Serializable;
+
 /**
  * TODO: create javadoc *
  *
@@ -19,14 +21,18 @@ import org.hibernate.validator.constraints.Length;
 @EqualsAndHashCode
 @Entity
 @Table(name = "people")
-public class Person {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @OneToOne(mappedBy = "person")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @NotNull

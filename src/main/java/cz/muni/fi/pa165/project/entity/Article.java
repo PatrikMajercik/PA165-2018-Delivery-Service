@@ -26,6 +26,7 @@ public class Article {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Setter(AccessLevel.NONE)
     private Long id;
     
     @NotNull

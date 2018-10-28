@@ -30,6 +30,7 @@ public class Delivery {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     @NotNull
@@ -49,18 +50,12 @@ public class Delivery {
     @Column(nullable = false)
     private BigDecimal price;
     
-    @NotNull
-    @Column(nullable = false)
     @ManyToOne
     private Person courier;
     
-    @NotNull
-    @Column(nullable = false)
     @ManyToOne
     private Person customer;
     
-    @NotNull
-    @Column(nullable = false)
-    @OneToOne
+    @OneToMany
     private List<Article> articles;
 }

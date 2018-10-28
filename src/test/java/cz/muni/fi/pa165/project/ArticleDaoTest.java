@@ -101,6 +101,11 @@ public class ArticleDaoTest extends AbstractTestNGSpringContextTests{
         em.persist(a);
         assertEquals(a, articleDao.findById(a.getId()));
     }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findByNullId(){
+        Article a = articleDao.findById(null);
+    }
     
     @Test
     public void findAll(){

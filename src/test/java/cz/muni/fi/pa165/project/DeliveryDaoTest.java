@@ -6,10 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.ValidationException;
 
-import cz.muni.fi.pa165.project.entity.Address;
-import cz.muni.fi.pa165.project.entity.Article;
-import cz.muni.fi.pa165.project.entity.Delivery;
-import cz.muni.fi.pa165.project.entity.Person;
+import cz.muni.fi.pa165.project.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -22,10 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -174,8 +170,11 @@ public class DeliveryDaoTest extends AbstractTestNGSpringContextTests{
         d.setCustomer(person);
         d.setCourier(person2);
         d.setArticles(articles);
-        d.setOrdered(new GregorianCalendar(2017, Calendar.DECEMBER, 20).getTime());
-        d.setDelivered(new GregorianCalendar(2017, Calendar.DECEMBER, 24).getTime());
+        LocalDateTime orderTime = LocalDateTime.of(2017, Month.DECEMBER, 20, 19, 30, 40);
+        LocalDateTime deliveryTime = LocalDateTime.of(2017, Month.DECEMBER, 24, 19, 30, 40);
+        d.setOrdered(orderTime);
+        d.setDelivered(deliveryTime);
+        d.setDeliveryState(DeliveryState.CREATED);
         return d;
     }
 }

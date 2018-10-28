@@ -15,10 +15,12 @@ import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
 
 import cz.muni.fi.pa165.project.dao.DeliveryDao;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Jakub Gavlas
  */
+@Repository
 public class DeliveryDaoImpl implements DeliveryDao {
 
     @PersistenceContext

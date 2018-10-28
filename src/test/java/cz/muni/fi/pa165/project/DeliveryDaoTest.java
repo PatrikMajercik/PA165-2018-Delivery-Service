@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Tests for DeliveryDao
  *
  * @author Tomas Terem
  */

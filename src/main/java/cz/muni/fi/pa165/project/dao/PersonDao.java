@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
+ * Interface for Person DAO
+ *
  * @author Tomas Terem
  */
 public interface PersonDao {

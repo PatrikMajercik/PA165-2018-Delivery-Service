@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.project.entity;
 
 /**
- * TODO: create javadoc *
+ * DeliveryState
  *
  * @author Patrik Majercik
  */

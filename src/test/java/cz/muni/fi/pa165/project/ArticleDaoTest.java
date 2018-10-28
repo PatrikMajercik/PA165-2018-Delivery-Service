@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ * Tests for ArticleDao
  *
  * @author Tomas Terem
  */

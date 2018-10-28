@@ -14,7 +14,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * TODO: create javadoc *
+ * Article entity
  *
  * @author Patrik Majercik
  */

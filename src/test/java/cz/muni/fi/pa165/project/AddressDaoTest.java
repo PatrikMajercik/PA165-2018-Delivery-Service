@@ -19,6 +19,11 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
+/**
+ * Tests for AddressDao
+ *
+ * @author Jakub Gavlas
+ */
 @ContextConfiguration(classes = cz.muni.fi.pa165.project.ApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional

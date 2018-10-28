@@ -56,7 +56,7 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public Address findById(@NotNull Long id) throws IllegalArgumentException {
         if (id == null) {
-            throw new ValidationException("id is null");
+            throw new IllegalArgumentException("id is null");
         }
         return entityManager.find(Address.class, id);
     }

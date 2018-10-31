@@ -31,6 +31,7 @@ public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Setter(AccessLevel.NONE)
+    @EqualsAndHashCode.Exclude
     private Long id;
 
     @NotNull

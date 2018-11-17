@@ -11,5 +11,12 @@
 
     <artifactId>DeliveryService-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>cz.muni.fi.pa165.project</groupId>
+            <artifactId>DeliveryService-persistance</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

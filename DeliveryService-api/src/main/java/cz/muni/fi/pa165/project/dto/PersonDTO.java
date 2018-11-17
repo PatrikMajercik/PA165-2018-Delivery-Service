@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.project.dto;
 
+import cz.muni.fi.pa165.project.dto.AddressDTO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

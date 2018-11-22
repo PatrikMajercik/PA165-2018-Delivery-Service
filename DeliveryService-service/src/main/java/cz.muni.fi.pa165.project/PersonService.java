@@ -10,7 +10,6 @@ import java.util.List;
  *
  * @author Tomas Terem
  */
-@Service
 public interface PersonService {
 
     /**

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  *
  * @author Tomas Terem
  */
-@Service
 public interface BeanMappingService {
 
     <T> List<T> mapTo(Collection<?> objects, Class<T> mapToClass);

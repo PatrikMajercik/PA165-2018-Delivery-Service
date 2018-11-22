@@ -41,6 +41,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public String findCityWithMostAddresses() {
         List<Address> addresses = addressDao.findAll();
+
         Map<String, Integer> cityCount = new HashMap<>();
         for (Address address : addresses) {
             String city = address.getCity();

@@ -5,7 +5,9 @@ import cz.muni.fi.pa165.project.entity.Address;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * AddressService implementation

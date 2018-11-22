@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.project;
 
 import cz.muni.fi.pa165.project.entity.Person;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

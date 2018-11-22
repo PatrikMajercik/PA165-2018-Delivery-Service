@@ -47,4 +47,9 @@ public class AddressFacadeImpl implements AddressFacade {
     public List<AddressDTO> findAll() {
         return beanMappingService.mapTo(addressService.findAll(), AddressDTO.class);
     }
+
+    @Override
+    public String findCityWithMostAddresses() {
+        return addressService.findCityWithMostAddresses();
+    }
 }

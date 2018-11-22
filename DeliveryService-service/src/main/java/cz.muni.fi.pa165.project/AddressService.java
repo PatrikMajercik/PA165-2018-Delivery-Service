@@ -47,4 +47,12 @@ public interface AddressService {
      * @return list of all addresses in database
      */
     List<Address> findAll();
+
+    /**
+     * Return a single string - city with most addresses in database
+     * If there are two or more cities with same number of addresses then choose one random to return
+     *
+     * @return city with most addresses in database
+     */
+    String findCityWithMostAddresses();
 }

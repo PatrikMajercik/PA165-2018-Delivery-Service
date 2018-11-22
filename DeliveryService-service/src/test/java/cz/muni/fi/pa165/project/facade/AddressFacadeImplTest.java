@@ -64,6 +64,7 @@ public class AddressFacadeImplTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.initMocks(this);
         when(addressService.findById(address1.getId())).thenReturn(address1);
         when(addressService.findAll()).thenReturn(Arrays.asList(address1, address2));
+        when(addressService.findCityWithMostAddresses()).thenReturn("Brno");
     }
 
     @Test
@@ -103,6 +104,13 @@ public class AddressFacadeImplTest extends AbstractTestNGSpringContextTests {
         List<Address> addresses = beanMappingService.mapTo(addressDTOs, Address.class);
         assertTrue(addresses.contains(address1));
         assertTrue(addresses.contains(address2));
+    }
+
+    @Test
+    public void findCityWithMostAddresses() {
+        String city = addressFacade.findCityWithMostAddresses();
+        verify(addressService).findCityWithMostAddresses();
+        assertEquals(city, "Brno");
     }
 
 }

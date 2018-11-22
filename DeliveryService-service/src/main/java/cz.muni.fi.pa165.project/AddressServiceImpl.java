@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.project.entity.Address;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
+import java.util.*;
 
 /**
  * AddressService implementation
@@ -36,5 +36,27 @@ public class AddressServiceImpl implements AddressService {
 
     public List<Address> findAll() {
         return addressDao.findAll();
+    }
+
+    @Override
+    public String findCityWithMostAddresses() {
+        List<Address> addresses = addressDao.findAll();
+        Map<String, Integer> cityCount = new HashMap<>();
+        for (Address address : addresses) {
+            String city = address.getCity();
+            Integer count = cityCount.get(city);
+            cityCount.put(city, count != null ? count + 1 : 1);
+        }
+
+        int max = 0;
+        String result = null;
+        for (Map.Entry<String, Integer> entry : cityCount.entrySet())
+        {
+            if (entry.getValue() > max) {
+                max = entry.getValue();
+                result = entry.getKey();
+            }
+        }
+        return result;
     }
 }

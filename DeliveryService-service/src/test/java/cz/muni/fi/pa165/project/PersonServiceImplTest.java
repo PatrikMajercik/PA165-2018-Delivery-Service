@@ -54,32 +54,32 @@ public class PersonServiceImplTest extends AbstractTransactionalTestNGSpringCont
 
 
     @Test
-    public void testFindById(){
+    public void findByIdTest(){
         Long id = 1L;
         personService.findById(id);
         verify(personDao).findById(id);
     }
 
     @Test
-    public void testFindPersonByEmail(){
+    public void findPersonByEmailTest(){
         personService.findPersonByEmail(getPerson().getEmail());
         verify(personDao).findPersonByEmail(getPerson().getEmail());
     }
 
     @Test
-    public void testFindPersonByName(){
+    public void findPersonByNameTest(){
         personService.findPersonByName(getPerson().getName());
         verify(personDao).findPersonByName(getPerson().getName());
     }
 
     @Test
-    public void testFindAll(){
+    public void findAllTest(){
         personService.findAll();
         verify(personDao).findAll();
     }
 
     @Test
-    public void testCreate(){
+    public void createTest(){
         Person person = getPerson();
         personService.create(person);
         verify(personDao).create(person);
@@ -87,14 +87,14 @@ public class PersonServiceImplTest extends AbstractTransactionalTestNGSpringCont
 
 
     @Test
-    public void testDelete(){
+    public void deleteTest(){
         Person person = getPerson();
         personService.delete(person);
         verify(personDao).delete(person);
     }
 
     @Test
-    public void testUpdate(){
+    public void updateTest(){
         Person person = getPerson();
         personService.update(person);
         verify(personDao).update(person);

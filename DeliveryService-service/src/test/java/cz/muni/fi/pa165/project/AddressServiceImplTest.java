@@ -45,20 +45,20 @@ public class AddressServiceImplTest extends AbstractTransactionalTestNGSpringCon
     }
 
     @Test
-    public void testFindById(){
+    public void findByIdTest(){
         Long id = 1L;
         addressService.findById(id);
         verify(addressDao).findById(id);
     }
 
     @Test
-    public void testFindAll(){
+    public void fFindAllTest(){
         addressService.findAll();
         verify(addressDao).findAll();
     }
 
     @Test
-    public void testCreate(){
+    public void createTest(){
         Address address = getAnAddress();
         addressService.create(address);
         verify(addressDao).create(address);
@@ -66,14 +66,14 @@ public class AddressServiceImplTest extends AbstractTransactionalTestNGSpringCon
 
 
     @Test
-    public void testDelete(){
+    public void deleteTest(){
         Address address = getAnAddress();
         addressService.delete(address);
         verify(addressDao).delete(address);
     }
 
     @Test
-    public void testUpdate(){
+    public void updateTest(){
         Address address = getAnAddress();
         addressService.update(address);
         verify(addressDao).update(address);

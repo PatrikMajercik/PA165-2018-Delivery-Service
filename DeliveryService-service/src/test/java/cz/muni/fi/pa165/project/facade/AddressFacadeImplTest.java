@@ -68,14 +68,14 @@ public class AddressFacadeImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void createAddress() {
+    public void createAddressTest() {
         AddressDTO addressDTO = beanMappingService.mapTo(address1, AddressDTO.class);
         addressFacade.create(addressDTO);
         verify(addressService).create(any(Address.class));
     }
 
     @Test
-    public void updateAddress() {
+    public void updateAddressTest() {
         AddressDTO addressDTO = beanMappingService.mapTo(address1, AddressDTO.class);
         addressDTO.setCity("Brno");
         addressFacade.update(addressDTO);
@@ -83,21 +83,21 @@ public class AddressFacadeImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void deleteAddress() {
+    public void deleteAddressTest() {
         AddressDTO addressDTO = beanMappingService.mapTo(address1, AddressDTO.class);
         addressFacade.delete(addressDTO);
         verify(addressService).delete(any(Address.class));
     }
 
     @Test
-    public void findById() {
+    public void findByIdTest() {
         AddressDTO addressDTO = addressFacade.findById(address1.getId());
         verify(addressService).findById(address1.getId());
         assertEquals(address1, beanMappingService.mapTo(addressDTO, Address.class));
     }
 
     @Test
-    public void findAll() {
+    public void findAllTest() {
         List<AddressDTO> addressDTOs = addressFacade.findAll();
         verify(addressService).findAll();
         assertEquals(2, addressDTOs.size());
@@ -107,7 +107,7 @@ public class AddressFacadeImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findCityWithMostAddresses() {
+    public void findCityWithMostAddressesTest() {
         String city = addressFacade.findCityWithMostAddresses();
         verify(addressService).findCityWithMostAddresses();
         assertEquals(city, "Brno");

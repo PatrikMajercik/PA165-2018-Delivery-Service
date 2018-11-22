@@ -87,14 +87,14 @@ public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void createPerson() {
+    public void createPersonTest() {
         PersonDTO personDTO = beanMappingService.mapTo(person1, PersonDTO.class);
         personFacade.create(personDTO);
         verify(personService).create(any(Person.class));
     }
 
     @Test
-    public void updatePerson() {
+    public void updatePersonTest() {
         PersonDTO personDTO = beanMappingService.mapTo(person1, PersonDTO.class);
         personDTO.setName("Severus Snape");
         personFacade.update(personDTO);
@@ -102,21 +102,21 @@ public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void deletePerson() {
+    public void deletePersonTest() {
         PersonDTO personDTO = beanMappingService.mapTo(person1, PersonDTO.class);
         personFacade.delete(personDTO);
         verify(personService).delete(any(Person.class));
     }
 
     @Test
-    public void findById() {
+    public void findByIdTest() {
         PersonDTO personDTO = personFacade.findById(person1.getId());
         verify(personService).findById(person1.getId());
         assertEquals(person1, beanMappingService.mapTo(personDTO, Person.class));
     }
 
     @Test
-    public void findPersonByName() {
+    public void findPersonByNameTest() {
         List<PersonDTO> personDTOs = personFacade.findPersonByName(person1.getName());
         verify(personService).findPersonByName(person1.getName());
         assertEquals(1, personDTOs.size());
@@ -125,7 +125,7 @@ public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findByEmail() {
+    public void findByEmailTest() {
         List<PersonDTO> personDTOs = personFacade.findPersonByEmail(person2.getEmail());
         verify(personService).findPersonByEmail(person2.getEmail());
         assertEquals(1, personDTOs.size());
@@ -134,7 +134,7 @@ public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findAll() {
+    public void findAllTest() {
         List<PersonDTO> personDTOs = personFacade.findAll();
         verify(personService).findAll();
         assertEquals(2, personDTOs.size());

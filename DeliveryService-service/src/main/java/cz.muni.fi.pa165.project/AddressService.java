@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.project;
 
 import cz.muni.fi.pa165.project.entity.Address;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @author Tomas Terem
  */
+@Service
 public interface AddressService {
 
     /**

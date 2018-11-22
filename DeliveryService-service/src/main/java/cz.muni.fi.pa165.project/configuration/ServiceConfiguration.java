@@ -18,7 +18,6 @@ import org.dozer.loader.api.BeanMappingBuilder;
 /**
  * @author Tomas Terem
  */
-
 @Configuration
 @Import(ApplicationContext.class)
 @ComponentScan(basePackageClasses = {AddressServiceImpl.class, AddressFacadeImpl.class})

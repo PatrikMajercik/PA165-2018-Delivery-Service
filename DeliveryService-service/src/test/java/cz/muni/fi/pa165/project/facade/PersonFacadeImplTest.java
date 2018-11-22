@@ -2,26 +2,29 @@ package cz.muni.fi.pa165.project.facade;
 
 import cz.muni.fi.pa165.project.BeanMappingService;
 import cz.muni.fi.pa165.project.PersonService;
+import cz.muni.fi.pa165.project.configuration.ServiceConfiguration;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.entity.Address;
 import cz.muni.fi.pa165.project.entity.Person;
-import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
+@ContextConfiguration(classes = ServiceConfiguration.class)
 public class PersonFacadeImplTest {
 
     @Mock

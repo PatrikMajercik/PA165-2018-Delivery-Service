@@ -6,13 +6,11 @@ import java.util.stream.Collectors;
 
 import org.dozer.Mapper;
 import org.dozer.inject.Inject;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Tomas Terem
  */
-@Service
 public class BeanMappingServiceImpl implements BeanMappingService {
 
     @Inject

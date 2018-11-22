@@ -11,6 +11,7 @@
 
     <artifactId>DeliveryService-service</artifactId>
 
+
     <dependencies>
         <dependency>
             <groupId>cz.muni.fi.pa165.project</groupId>
@@ -21,6 +22,16 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.fi.muni.pa165.project</groupId>
+            <artifactId>DeliveryService-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>5.5.1</version>
         </dependency>
     </dependencies>
 

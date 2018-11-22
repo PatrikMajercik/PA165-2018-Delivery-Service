@@ -1,3 +1,5 @@
+package cz.muni.fi.pa165.project;
+
 import cz.muni.fi.pa165.project.dao.AddressDao;
 import cz.muni.fi.pa165.project.entity.Address;
 

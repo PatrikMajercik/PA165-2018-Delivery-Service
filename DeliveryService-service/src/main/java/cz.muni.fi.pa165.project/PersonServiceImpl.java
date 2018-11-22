@@ -1,3 +1,5 @@
+package cz.muni.fi.pa165.project;
+
 import cz.muni.fi.pa165.project.dao.PersonDao;
 import cz.muni.fi.pa165.project.entity.Person;
 

@@ -5,10 +5,19 @@ import cz.muni.fi.pa165.project.PersonService;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * PersonFacade implementation
+ *
+ * @author Tomas Terem
+ */
+@Service
+@Transactional
 public class PersonFacadeImpl implements PersonFacade {
 
     @Inject

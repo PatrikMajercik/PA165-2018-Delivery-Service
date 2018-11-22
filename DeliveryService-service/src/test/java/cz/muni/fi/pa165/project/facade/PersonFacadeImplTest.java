@@ -24,6 +24,11 @@ import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+/**
+ * Tests for PersonFacade
+ *
+ * @author Tomas Terem
+ */
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class PersonFacadeImplTest {
 

@@ -2,10 +2,15 @@ package cz.muni.fi.pa165.project;
 
 import cz.muni.fi.pa165.project.dao.AddressDao;
 import cz.muni.fi.pa165.project.entity.Address;
-import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
+
+/**
+ * AddressService implementation
+ *
+ * @author Tomas Terem
+ */
 public class AddressServiceImpl implements AddressService {
 
     @Inject

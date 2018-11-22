@@ -14,6 +14,11 @@ import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.verify;
 
+/**
+ * Tests for AddressService
+ *
+ * @author Tomas Terem
+ */
 @ContextConfiguration(classes = {ServiceConfiguration.class})
 public class AddressServiceImplTest extends AbstractTransactionalTestNGSpringContextTests {
 

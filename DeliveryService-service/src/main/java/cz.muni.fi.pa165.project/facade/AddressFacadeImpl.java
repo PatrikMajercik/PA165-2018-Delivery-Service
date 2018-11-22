@@ -10,6 +10,11 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * AddressFacade implementation
+ *
+ * @author Tomas Terem
+ */
 @Service
 @Transactional
 public class AddressFacadeImpl implements AddressFacade {

@@ -44,7 +44,6 @@ public class AddressServiceImplTest extends AbstractTransactionalTestNGSpringCon
         return address;
     }
 
-
     @Test
     public void testFindById(){
         Long id = 1L;

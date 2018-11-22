@@ -21,7 +21,6 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Setter(AccessLevel.NONE)
     @EqualsAndHashCode.Exclude
     private Long id;
 

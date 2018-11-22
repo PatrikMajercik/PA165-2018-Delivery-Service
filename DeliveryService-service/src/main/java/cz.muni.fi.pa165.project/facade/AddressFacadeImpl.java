@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.project.AddressService;
 import cz.muni.fi.pa165.project.BeanMappingService;
 import cz.muni.fi.pa165.project.dto.AddressDTO;
 import cz.muni.fi.pa165.project.entity.Address;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -18,7 +17,7 @@ public class AddressFacadeImpl implements AddressFacade {
     @Inject
     private AddressService addressService;
 
-    @Autowired
+    @Inject
     private BeanMappingService beanMappingService;
 
     public void create(AddressDTO addressDTO) {

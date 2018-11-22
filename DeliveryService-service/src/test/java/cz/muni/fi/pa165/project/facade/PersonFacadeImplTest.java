@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -30,7 +31,7 @@ import static org.testng.Assert.assertTrue;
  * @author Tomas Terem
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class PersonFacadeImplTest {
+public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
 
     @Mock
     private PersonService personService;
@@ -117,7 +118,7 @@ public class PersonFacadeImplTest {
     @Test
     public void findPersonByName() {
         List<PersonDTO> personDTOs = personFacade.findPersonByName(person1.getName());
-        verify(personService).findAll();
+        verify(personService).findPersonByName(person1.getName());
         assertEquals(1, personDTOs.size());
         List<Person> people = beanMappingService.mapTo(personDTOs, Person.class);
         assertTrue(people.contains(person1));
@@ -126,7 +127,7 @@ public class PersonFacadeImplTest {
     @Test
     public void findByEmail() {
         List<PersonDTO> personDTOs = personFacade.findPersonByEmail(person2.getEmail());
-        verify(personService).findAll();
+        verify(personService).findPersonByEmail(person2.getEmail());
         assertEquals(1, personDTOs.size());
         List<Person> people = beanMappingService.mapTo(personDTOs, Person.class);
         assertTrue(people.contains(person2));
@@ -139,7 +140,7 @@ public class PersonFacadeImplTest {
         assertEquals(2, personDTOs.size());
         List<Person> people = beanMappingService.mapTo(personDTOs, Person.class);
         assertTrue(people.contains(person1));
-        assertTrue(people.contains(address2));
+        assertTrue(people.contains(person2));
     }
 
 }

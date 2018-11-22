@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.project.facade;
 
 import cz.muni.fi.pa165.project.AddressService;
 import cz.muni.fi.pa165.project.BeanMappingService;
-import cz.muni.fi.pa165.project.BeanMappingServiceImpl;
 import cz.muni.fi.pa165.project.configuration.ServiceConfiguration;
 import cz.muni.fi.pa165.project.dto.AddressDTO;
 import cz.muni.fi.pa165.project.entity.Address;

@@ -73,19 +73,6 @@ public class AddressServiceImplTest extends AbstractTransactionalTestNGSpringCon
     }
 
     @Test
-    public void findByIdTest(){
-        Long id = 1L;
-        addressService.findById(id);
-        verify(addressDao).findById(id);
-    }
-
-    @Test
-    public void findAllTest(){
-        addressService.findAll();
-        verify(addressDao).findAll();
-    }
-
-    @Test
     public void createTest(){
         Address address = address1;
         addressService.create(address);
@@ -105,6 +92,19 @@ public class AddressServiceImplTest extends AbstractTransactionalTestNGSpringCon
         Address address = address1;
         addressService.update(address);
         verify(addressDao).update(address);
+    }
+
+    @Test
+    public void findByIdTest(){
+        Long id = 1L;
+        addressService.findById(id);
+        verify(addressDao).findById(id);
+    }
+
+    @Test
+    public void findAllTest(){
+        addressService.findAll();
+        verify(addressDao).findAll();
     }
 
     @Test

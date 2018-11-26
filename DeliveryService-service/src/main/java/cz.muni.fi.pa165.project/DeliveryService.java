@@ -51,5 +51,5 @@ public interface DeliveryService {
      * @param courier
      * @return 
      */
-    public List<Delivery> orderCouriersDeliveries(Person courier);
+    public List<Delivery> reorderCouriersDeliveries(Person courier);
 }

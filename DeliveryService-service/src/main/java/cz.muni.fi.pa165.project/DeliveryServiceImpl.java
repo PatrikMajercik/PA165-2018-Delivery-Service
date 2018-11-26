@@ -45,14 +45,17 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
     
     @Override
-    public List<Delivery> orderCouriersDeliveries(Person courier){
+    public List<Delivery> reorderCouriersDeliveries(Person courier){
         List<Delivery> deliveries = deliveryDao.findAll();
         List<Delivery> couriersDeliveries = new ArrayList<>();
         deliveries.stream().filter((d) -> (d.getCourier().equals(courier))).forEachOrdered((d) -> {
             couriersDeliveries.add(d);
         });
-                
+        //Order by address
+        couriersDeliveries.sort((o1,o2) -> o1.getCustomer().getAddress().getStreet().compareTo(o2.getCustomer().getAddress().getStreet()));
+        //Order by city
         couriersDeliveries.sort((o1,o2) -> o1.getCustomer().getAddress().getCity().compareTo(o2.getCustomer().getAddress().getCity()));
+        if(couriersDeliveries.isEmpty()) return null;
         return couriersDeliveries;
     }
 }

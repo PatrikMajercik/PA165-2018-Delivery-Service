@@ -68,16 +68,20 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
         ad1.setCity("Brno");
         ad1.setStreet("Antoninova");
         ad2.setCity("Zlin");
-        ad1.setStreet("Cecilova");
+        ad2.setStreet("Cecilova");
         ad3.setCity("Zlin");
-        ad1.setStreet("Bohusova");
+        ad3.setStreet("Bohusova");
         ad4.setCity("Praha");
-        ad1.setStreet("Frantova");
+        ad4.setStreet("Frantova");
         
         p1.setAddress(ad1);
+        p1.setName("prvy");
         p2.setAddress(ad2);
+        p2.setName("druhy");
         p3.setAddress(ad3);
+        p3.setName("treti");
         p4.setAddress(ad4);
+        p4.setName("stvrty");
         
         delivery1.setId(1L);
         delivery1.setCustomer(p1);
@@ -123,7 +127,7 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
     public void findByIdTest(){
         Long id = 1L;
         deliveryService.findById(id);
-        verify(deliveryDao).findById(id);
+        verify(deliveryDao, times(1)).findById(id);
     }
 
     
@@ -132,21 +136,31 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
         List<Delivery> expected = Arrays.asList(delivery1, delivery1);
         when(deliveryDao.findAll()).thenReturn(expected);
         List<Delivery> returned = deliveryService.findAll();
-        //verify(deliveryDao).findAll();
+        verify(deliveryDao, times(3)).findAll();
         Assert.assertEquals(expected,returned);
     }
+    
     
     @Test
     public void DeliveryOrdering(){
         List<Delivery> deliveries = Arrays.asList(delivery1, delivery2, delivery3, delivery4);
         when(deliveryDao.findAll()).thenReturn(new ArrayList<>(deliveries));
         Person courier = p5;
-        List<Delivery> ordered = deliveryService.orderCouriersDeliveries(courier);
+        List<Delivery> ordered = deliveryService.reorderCouriersDeliveries(courier);
         Assert.assertEquals(ordered.size(), 4);
         Assert.assertEquals(ordered.get(0),(delivery1));
         Assert.assertEquals(ordered.get(1),(delivery4));
-        Assert.assertEquals(ordered.get(2),(delivery2));
-        Assert.assertEquals(ordered.get(3),(delivery3));
+        Assert.assertEquals(ordered.get(2),(delivery3));
+        Assert.assertEquals(ordered.get(3),(delivery2));
+        
     }
     
+    @Test
+    public void DeliveryOrderNull(){
+        List<Delivery> deliveries = Arrays.asList(delivery1, delivery2, delivery3, delivery4);
+        when(deliveryDao.findAll()).thenReturn(new ArrayList<>(deliveries));
+        Person courier = p1;
+        List<Delivery> ordered = deliveryService.reorderCouriersDeliveries(courier);
+        Assert.assertNull(ordered);
+    }
 }

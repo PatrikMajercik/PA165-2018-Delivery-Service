@@ -1,7 +1,5 @@
 package cz.muni.fi.pa165.project.entity;
 
-
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

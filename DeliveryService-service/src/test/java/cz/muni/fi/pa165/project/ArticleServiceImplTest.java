@@ -90,6 +90,12 @@ public class ArticleServiceImplTest extends AbstractTransactionalTestNGSpringCon
     }
 
     @Test
+    public void testName() {
+        when(articleDao.update(null)).thenThrow(new IllegalArgumentException());
+        articleService.update(null);
+    }
+
+    @Test
     public void testUpdate() {
         articleService.update(article1);
         verify(articleDao).update(article1);

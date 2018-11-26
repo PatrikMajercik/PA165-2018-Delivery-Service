@@ -28,5 +28,5 @@ public class DeliveryDTO {
     private BigDecimal price;
     private PersonDTO courier;
     private PersonDTO customer;
-    //private List<ArticleDTO> articles;    
+    private List<ArticleDTO> articles;    
 }

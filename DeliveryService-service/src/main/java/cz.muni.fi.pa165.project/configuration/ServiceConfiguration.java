@@ -3,8 +3,10 @@ package cz.muni.fi.pa165.project.configuration;
 import cz.muni.fi.pa165.project.AddressServiceImpl;
 import cz.muni.fi.pa165.project.ApplicationContext;
 import cz.muni.fi.pa165.project.dto.AddressDTO;
+import cz.muni.fi.pa165.project.dto.DeliveryDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.entity.Address;
+import cz.muni.fi.pa165.project.entity.Delivery;
 import cz.muni.fi.pa165.project.entity.Person;
 import cz.muni.fi.pa165.project.facade.AddressFacadeImpl;
 import org.dozer.DozerBeanMapper;
@@ -35,6 +37,7 @@ public class ServiceConfiguration {
         protected void configure() {
             mapping(Person.class, PersonDTO.class);
             mapping(Address.class, AddressDTO.class);
+            mapping(Delivery.class, DeliveryDTO.class);
         }
     }
 }

@@ -88,12 +88,12 @@ public class ArticleServiceImplTest extends AbstractTransactionalTestNGSpringCon
         assertTrue(articleService.findAll().contains(article1));
         assertTrue(articleService.findAll().contains(article2));
     }
-
+    /*
     @Test
     public void testName() {
         when(articleDao.update(null)).thenThrow(new IllegalArgumentException());
         articleService.update(null);
-    }
+    }*/
 
     @Test
     public void testUpdate() {

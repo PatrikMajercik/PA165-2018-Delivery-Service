@@ -103,6 +103,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Article article = new Article();
         article.setName(name);
         article.setWeight(weight);
+        articleService.create(article);
         return article;
     }
 

@@ -1,10 +1,11 @@
-package cz.fi.muni.pa165.project;
+package cz.muni.fi.pa165.project;
 
 import java.io.IOException;
 
 /**
- * @author Tomas Terem
+ * @author Patrik Majercik
  */
+
 public interface SampleDataLoadingFacade {
 
     void loadData() throws IOException;

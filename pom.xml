@@ -12,5 +12,6 @@
       <module>DeliveryService-service</module>
       <module>DeliveryService-rest</module>
       <module>DeliveryService-sample-data</module>
+
     </modules>
 </project>

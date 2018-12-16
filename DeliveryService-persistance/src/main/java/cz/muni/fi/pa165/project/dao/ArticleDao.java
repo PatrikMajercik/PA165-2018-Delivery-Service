@@ -25,7 +25,7 @@ public interface ArticleDao {
      * @throws IllegalArgumentException if article is null
      * @throws ValidationException      if article id is not null
      */
-    void create(@NotNull Article article) throws IllegalArgumentException, ValidationException;
+    Long create(@NotNull Article article) throws IllegalArgumentException, ValidationException;
 
     /**
      * Updates article

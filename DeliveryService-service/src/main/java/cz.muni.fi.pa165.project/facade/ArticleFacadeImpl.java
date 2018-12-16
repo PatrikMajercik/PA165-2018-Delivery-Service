@@ -24,9 +24,9 @@ public class ArticleFacadeImpl implements ArticleFacade {
     private BeanMappingService beanMappingService;
 
     @Override
-    public void create(ArticleDTO articleDTO) {
+    public Long create(ArticleDTO articleDTO) {
         Article mappedArticle = beanMappingService.mapTo(articleDTO, Article.class);
-        articleService.create(mappedArticle);
+        return articleService.create(mappedArticle);
     }
 
     @Override
@@ -46,8 +46,7 @@ public class ArticleFacadeImpl implements ArticleFacade {
     }
 
     @Override
-    public void delete(ArticleDTO articleDTO) {
-        Article mappedArticle = beanMappingService.mapTo(articleDTO, Article.class);
-        articleService.delete(mappedArticle);
+    public void delete(Long id) {
+        articleService.delete(id);
     }
 }

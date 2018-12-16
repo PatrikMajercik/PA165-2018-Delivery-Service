@@ -16,7 +16,7 @@ public interface ArticleService {
      * @param article
      *
      */
-    void create(Article article);
+    Long create(Article article);
 
     /**
      * Get Article with specified id.
@@ -42,7 +42,7 @@ public interface ArticleService {
     /**
      * Remove Article specified as parameter
      *
-     * @param article
+     * @param id
      */
-    void delete(Article article);
+    void delete(Long id);
 }

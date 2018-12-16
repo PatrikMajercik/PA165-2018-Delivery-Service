@@ -27,7 +27,7 @@ public class ArticleDaoImpl implements ArticleDao {
     private EntityManager em;
 
     @Override
-    public void create(@NotNull Article article) throws IllegalArgumentException, ValidationException {
+    public Long create(@NotNull Article article) throws IllegalArgumentException, ValidationException {
         if (article == null) {
             throw new IllegalArgumentException("article is null");
         }
@@ -35,6 +35,7 @@ public class ArticleDaoImpl implements ArticleDao {
             throw new ValidationException("article id cannot be set before creation");
         }
         em.persist(article);
+        return article.getId();
     }
 
     @Override

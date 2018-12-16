@@ -16,8 +16,8 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleDao articleDao;
 
     @Override
-    public void create(Article article) {
-        articleDao.create(article);
+    public Long create(Article article) {
+        return articleDao.create(article);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void delete(Article article) {
-        articleDao.delete(article);
+    public void delete(Long id) {
+        articleDao.delete(findById(id));
     }
 }

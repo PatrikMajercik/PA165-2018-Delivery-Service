@@ -16,7 +16,7 @@ public interface ArticleFacade {
      * @param articleDTO
      *
      */
-    void create(ArticleDTO articleDTO);
+    Long create(ArticleDTO articleDTO);
 
     /**
      * Get ArticleDTO with specified id.
@@ -42,7 +42,7 @@ public interface ArticleFacade {
     /**
      * Remove ArticleDTO specified as parameter
      *
-     * @param articleDTO
+     * @param id
      */
-    void delete(ArticleDTO articleDTO);
+    void delete(Long id);
 }

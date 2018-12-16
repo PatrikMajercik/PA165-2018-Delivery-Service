@@ -9,7 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>cz.fi.muni.pa165.project</groupId>
     <artifactId>DeliveryService-service</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
     <build>
         <plugins>
             <plugin>

@@ -10,8 +10,7 @@
     <jsp:attribute name="title">Homepage</jsp:attribute>
     <jsp:attribute name="body">
 
-        <h1>Delivery Service Application</h1>
-        <p>Welcome to delivery System Application</p>
+        <h1>Delivery Service</h1>
         
     </jsp:attribute>
 </my:pagetemplate>

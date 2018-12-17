@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.project.facade;
 
+import cz.muni.fi.pa165.project.dto.DeliveryCreateDTO;
 import cz.muni.fi.pa165.project.dto.DeliveryDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import java.util.List;
@@ -16,7 +17,13 @@ public interface  DeliveryFacade {
      * @param d 
      */
     public void create(DeliveryDTO d);
-    
+
+    /**
+     * Creates new Delivery d
+     *
+     * @param d
+     */
+    public void create(DeliveryCreateDTO d);
     /**
      * Updates Delivery d
      * 

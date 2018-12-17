@@ -11,14 +11,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.*;
 //import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.validation.Validator;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * The central Spring context and Spring MVC configuration.
@@ -33,7 +30,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @Import({DeliveryServiceWithSampleDataConfiguration.class})
 @ComponentScan(basePackages = "cz.fi.muni.pa165.project.mvc.controllers")
-public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
+public class MySpringMvcConfig implements WebMvcConfigurer {
 
     private final static Logger log = LoggerFactory.getLogger(MySpringMvcConfig.class);
 

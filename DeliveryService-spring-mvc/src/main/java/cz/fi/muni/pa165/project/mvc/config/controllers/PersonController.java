@@ -4,6 +4,7 @@ import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cz.muni.fi.pa165.project.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.facade.AddressFacade;
 import cz.muni.fi.pa165.project.facade.PersonFacade;
@@ -52,13 +53,13 @@ public class PersonController {
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newAddress(Model model) {
-        model.addAttribute("personCreate", new PersonDTO());
+        model.addAttribute("personCreate", new PersonCreateDTO());
         model.addAttribute("addresses", addressFacade.findAll());
         return "person/new";
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute("personCreate") PersonDTO formBean, BindingResult bindingResult,
+    public String create(@ModelAttribute("personCreate") PersonCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
@@ -66,7 +67,6 @@ public class PersonController {
             }
             return "person/new";
         }
-        formBean.setAddress(addressFacade.findById(formBean.getAddress().getId()));
         personFacade.create(formBean);
         // report success
         redirectAttributes.addFlashAttribute("alert_success", "Person was created");

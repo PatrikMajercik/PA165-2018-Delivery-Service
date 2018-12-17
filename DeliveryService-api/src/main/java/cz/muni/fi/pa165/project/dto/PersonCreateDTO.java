@@ -14,13 +14,13 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class PersonDTO {
+public class PersonCreateDTO {
 
     @EqualsAndHashCode.Exclude
     private Long id;
 
-    private AddressDTO address;
     private String name;
     private String phoneNumber;
     private String email;
+    private Long addressId;
 }

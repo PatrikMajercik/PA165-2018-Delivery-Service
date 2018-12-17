@@ -86,14 +86,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Person person7 = person(Person.builder().name("Kapitan Danko").email("krivo@gmail.com").phoneNumber("4588526564").address(address7).build());
         Person person8 = person(Person.builder().name("Marian Zvocca").email("serenada@gmail.com").phoneNumber("15489564").address(address8).build());
 
-        Delivery delivery1 = delivery(person1, person2, articleList1, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(250), DeliveryState.DELIVERED);
-        Delivery delivery2 = delivery(person2, person3, articleList2, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(150), DeliveryState.DELIVERED);
-        Delivery delivery3 = delivery(person3, person2, articleList3, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(2550), DeliveryState.DELIVERED);
-        Delivery delivery4 = delivery(person4, person2, articleList4, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(50), DeliveryState.DELIVERED);
-        Delivery delivery5 = delivery(person5, person2, articleList5, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(150), DeliveryState.DELIVERED);
-        Delivery delivery6 = delivery(person6, person2, articleList6, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(350), DeliveryState.DELIVERED);
-        Delivery delivery7 = delivery(person7, person2, articleList7, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(450), DeliveryState.DELIVERED);
-        Delivery delivery8 = delivery(person8, person2, articleList8, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(650), DeliveryState.DELIVERED);
+        Delivery delivery1 = delivery(person1, person2, articleList1, null, null, new BigDecimal(250), DeliveryState.DELIVERED);
+        Delivery delivery2 = delivery(person2, person3, articleList2, null, null, new BigDecimal(150), DeliveryState.DELIVERED);
+        Delivery delivery3 = delivery(person3, person2, articleList3, null, null, new BigDecimal(2550), DeliveryState.DELIVERED);
+        Delivery delivery4 = delivery(person4, person2, articleList4, null, null, new BigDecimal(50), DeliveryState.DELIVERED);
+        Delivery delivery5 = delivery(person5, person2, articleList5, null, null, new BigDecimal(150), DeliveryState.DELIVERED);
+        Delivery delivery6 = delivery(person6, person2, articleList6, null, null, new BigDecimal(350), DeliveryState.DELIVERED);
+        Delivery delivery7 = delivery(person7, person2, articleList7, null, null, new BigDecimal(450), DeliveryState.DELIVERED);
+        Delivery delivery8 = delivery(person8, person2, articleList8, null, null, new BigDecimal(650), DeliveryState.DELIVERED);
 
         log.info("Sample data loaded was completed successfully.");
     }

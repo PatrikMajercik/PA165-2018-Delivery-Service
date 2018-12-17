@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.project.facade;
 
+import cz.muni.fi.pa165.project.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 
 import java.util.List;
@@ -17,6 +18,13 @@ public interface PersonFacade {
      * @param personDTO personDTO
      */
     void create(PersonDTO personDTO);
+
+    /**
+     * Create new person
+     *
+     * @param personCreateDTO personCreateDTO
+     */
+    void create(PersonCreateDTO personCreateDTO);
 
     /**
      * Updates given person

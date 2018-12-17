@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.project.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 /**
  * Delivery entity
@@ -36,12 +38,11 @@ public class Delivery {
     @Enumerated
     private DeliveryState deliveryState;
     
-    @NotNull
-    @Column(nullable = false)
+    @Nullable
     private LocalDateTime ordered;
     
-    @NotNull
-    @Column(nullable = false)
+
+    @Nullable
     private LocalDateTime delivered;
     
     @NotNull
@@ -55,5 +56,6 @@ public class Delivery {
     private Person customer;
     
     @OneToMany
+    @JoinColumn(name="fk_id")
     private List<Article> articles;
 }

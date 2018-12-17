@@ -9,6 +9,7 @@ import cz.muni.fi.pa165.project.dto.DeliveryDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.entity.Article;
 import cz.muni.fi.pa165.project.entity.Delivery;
+import cz.muni.fi.pa165.project.entity.DeliveryState;
 import cz.muni.fi.pa165.project.entity.Person;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class DeliveryFacadeImpl implements DeliveryFacade{
         articles.add(articleService.findById(d.getArticleID()));
         delivery.setArticles(articles);
         delivery.setPrice(d.getPrice());
-
+        delivery.setDeliveryState(DeliveryState.CREATED);
         deliveryService.create(delivery);
     }
 

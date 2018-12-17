@@ -56,5 +56,6 @@ public class Delivery {
     private Person customer;
     
     @OneToMany
+    @JoinColumn(name="fk_id")
     private List<Article> articles;
 }

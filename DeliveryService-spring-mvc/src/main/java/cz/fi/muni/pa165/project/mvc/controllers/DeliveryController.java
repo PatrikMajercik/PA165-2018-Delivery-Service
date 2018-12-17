@@ -54,7 +54,7 @@ public class DeliveryController {
         log.debug("persons()");
         return personFacade.findAll();
     }
-    @ModelAttribute("persons")
+    @ModelAttribute("articles")
     public List<ArticleDTO> articles() {
         log.debug("articles()");
         return articleFacade.findAll();
@@ -105,6 +105,7 @@ public class DeliveryController {
 			}
 			return "delivery/new";
 		}
+
          deliveryFacade.create(formBean);
 
 		redirectAttributes.addFlashAttribute("alert_success", "Delivery " + /*id +*/ " was created");

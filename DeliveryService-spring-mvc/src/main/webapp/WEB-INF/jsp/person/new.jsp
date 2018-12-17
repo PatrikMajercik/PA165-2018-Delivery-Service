@@ -31,7 +31,7 @@
                             <form:select id="addresses" path="addressId" class="form-control">
                                 <form:option value="" label="--- Select Address ---"/>
                                 <c:forEach items="${addresses}" var="address">
-                                    <form:option type="text" value="${address.id}">${address.street}, ${address.streetNumber}, ${address.city}</form:option>
+                                    <form:option type="text" value="${address.id}">${address.street}, ${address.streetNumber},${address.postalCode}, ${address.city}</form:option>
                                 </c:forEach>
                             </form:select>                            
                         </div>

@@ -64,7 +64,6 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-          <li><my:a href="/" class="navbar-brand">Delivery Service</my:a></li>
             <li><my:a href="/delivery/list" class="navbar-brand">Deliveries</my:a></li>
             <li><my:a href="/person/list" class="navbar-brand">People</my:a></li>
             <li><my:a href="/article/list" class="navbar-brand">Articles</my:a></li>

@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
@@ -69,23 +68,23 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         List<Article> articleList9 = new ArrayList<>(Collections.singletonList(article12));
         List<Article> articleList10 = new ArrayList<>(Arrays.asList(article1, article11));
 
-        Address address1 = Address.builder().city("Praha").postalCode("03608").street("Volgogradska").streetNumber("35").build();
-        Address address2 = Address.builder().city("Zlin").postalCode("03609").street("Ceska").streetNumber("85").build();
-        Address address3 = Address.builder().city("Brno").postalCode("60600").street("Matouci").streetNumber("1").build();
-        Address address4 = Address.builder().city("Karvina").postalCode("84522").street("Kefirova").streetNumber("2").build();
-        Address address5 = Address.builder().city("Brno").postalCode("60600").street("Botanicka").streetNumber("150").build();
-        Address address6 = Address.builder().city("Karvina").postalCode("63544").street("Trnavska").streetNumber("36/54").build();
-        Address address7 = Address.builder().city("Praha").postalCode("69857").street("Kefirova").streetNumber("478").build();
-        Address address8 = Address.builder().city("Zlin").postalCode("03609").street("Botanicka").streetNumber("2").build();
+        Address address1 = address(Address.builder().city("Praha").postalCode("03608").street("Volgogradska").streetNumber("35").build());
+        Address address2 = address(Address.builder().city("Zlin").postalCode("03609").street("Ceska").streetNumber("85").build());
+        Address address3 = address(Address.builder().city("Brno").postalCode("60600").street("Matouci").streetNumber("1").build());
+        Address address4 = address(Address.builder().city("Karvina").postalCode("84522").street("Kefirova").streetNumber("2").build());
+        Address address5 = address(Address.builder().city("Brno").postalCode("60600").street("Botanicka").streetNumber("150").build());
+        Address address6 = address(Address.builder().city("Karvina").postalCode("63544").street("Trnavska").streetNumber("36/54").build());
+        Address address7 = address(Address.builder().city("Praha").postalCode("69857").street("Kefirova").streetNumber("478").build());
+        Address address8 = address(Address.builder().city("Zlin").postalCode("03609").street("Botanicka").streetNumber("2").build());
 
-        Person person1 = Person.builder().name("Patrik Majercik").email("dusan@gmail.com").phoneNumber("090826564").address(address1).build();
-        Person person2 = Person.builder().name("Fero Kral").email("krava@gmail.com").phoneNumber("590826564").address(address2).build();
-        Person person3 = Person.builder().name("Los Characteros").email("trava@gmail.com").phoneNumber("07416564").address(address3).build();
-        Person person4 = Person.builder().name("Kebab Mazurek").email("drevo@gmail.com").phoneNumber("09065422164").address(address4).build();
-        Person person5 = Person.builder().name("Laci Strajk").email("clivo@gmail.com").phoneNumber("09489564").address(address5).build();
-        Person person6 = Person.builder().name("Andrej STBabis").email("myjava@gmail.com").phoneNumber("054621564").address(address6).build();
-        Person person7 = Person.builder().name("Kapitan Danko").email("krivo@gmail.com").phoneNumber("4588526564").address(address7).build();
-        Person person8 = Person.builder().name("Marian Zvocca").email("serenada@gmail.com").phoneNumber("15489564").address(address8).build();
+        Person person1 = person(Person.builder().name("Patrik Majercik").email("dusan@gmail.com").phoneNumber("090826564").address(address1).build());
+        Person person2 = person(Person.builder().name("Fero Kral").email("krava@gmail.com").phoneNumber("590826564").address(address2).build());
+        Person person3 = person(Person.builder().name("Los Characteros").email("trava@gmail.com").phoneNumber("07416564").address(address3).build());
+        Person person4 = person(Person.builder().name("Kebab Mazurek").email("drevo@gmail.com").phoneNumber("09065422164").address(address4).build());
+        Person person5 = person(Person.builder().name("Laci Strajk").email("clivo@gmail.com").phoneNumber("09489564").address(address5).build());
+        Person person6 = person(Person.builder().name("Andrej STBabis").email("myjava@gmail.com").phoneNumber("054621564").address(address6).build());
+        Person person7 = person(Person.builder().name("Kapitan Danko").email("krivo@gmail.com").phoneNumber("4588526564").address(address7).build());
+        Person person8 = person(Person.builder().name("Marian Zvocca").email("serenada@gmail.com").phoneNumber("15489564").address(address8).build());
 
         Delivery delivery1 = delivery(person1, person2, articleList1, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(250), DeliveryState.DELIVERED);
         Delivery delivery2 = delivery(person2, person3, articleList2, LocalDateTime.now(), LocalDateTime.now().plusHours(5), new BigDecimal(150), DeliveryState.DELIVERED);
@@ -103,7 +102,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Article article = new Article();
         article.setName(name);
         article.setWeight(weight);
+
         articleService.create(article);
+
         return article;
     }
 
@@ -116,6 +117,19 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         delivery.setDelivered(delivered);
         delivery.setPrice(price);
         delivery.setDeliveryState(deliveryState);
+
+        deliveryService.create(delivery);
+
         return delivery;
+    }
+
+    private Person person(Person person) {
+        personService.create(person);
+        return person;
+    }
+
+    private Address address(Address address) {
+        addressService.create(address);
+        return address;
     }
 }

@@ -6,11 +6,102 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>DeliveryService</name>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- property used by spring-boot-starter-parent project to define maven.compiler.source and maven.compiler.target
+		     properties that in turn are used by maven-compiler-plugin to specify java source and target version -->
+        <java.version>8</java.version>
+    </properties>
+
+    <!-- Spring Boot Starter Parent as parent project - this project inherits versions of dependencies and plugins -->
+    <!-- see https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-build-systems.html#using-boot-maven-parent-pom -->
+    <!-- update Spring by changing the version here to the current release displayed at https://projects.spring.io/spring-boot/ -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>5.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.14.3</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-impl</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-spec</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.activation</groupId>
+                <artifactId>javax.activation</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+  <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <compilerArgument>-Xlint:unchecked,deprecation</compilerArgument>
+                    </configuration>
+                </plugin>
+                <!-- embedded Tomcat 9 plugin configuration, use "mvn cargo:run" to run -->
+                <plugin>
+                    <groupId>org.codehaus.cargo</groupId>
+                    <artifactId>cargo-maven2-plugin</artifactId>
+                    <version>1.7.0</version>
+                    <configuration>
+                        <container>
+                            <containerId>tomcat9x</containerId>
+                            <artifactInstaller>
+                                <groupId>org.apache.tomcat</groupId>
+                                <artifactId>tomcat</artifactId>
+                                <version>${tomcat.version}</version>
+                            </artifactInstaller>
+                        </container>
+                        <configuration>
+                            <properties>
+                                <cargo.servlet.port>8080</cargo.servlet.port>
+                                <cargo.tomcat.ajp.port>8012</cargo.tomcat.ajp.port>
+                            </properties>
+                        </configuration>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+  </build>
     <modules>
       <module>DeliveryService-api</module>
       <module>DeliveryService-persistance</module>
       <module>DeliveryService-service</module>
       <module>DeliveryService-rest</module>
       <module>DeliveryService-sample-data</module>
+      <module>DeliveryService-spring-mvc</module>
     </modules>
 </project>

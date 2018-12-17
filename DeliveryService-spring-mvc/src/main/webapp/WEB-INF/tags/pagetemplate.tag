@@ -55,21 +55,20 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <my:a href="/" class="navbar-brand">Delivery System</my:a>
+      <my:a href="/" class="navbar-brand">Delivery Service</my:a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-                  
+          <li><my:a href="/" class="navbar-brand">Delivery Service</my:a></li>
             <li><my:a href="/delivery/list" class="navbar-brand">Deliveries</my:a></li>
             <li><my:a href="/person/list" class="navbar-brand">People</my:a></li>
-            <li><my:a href="/goods/list" class="navbar-brand">Goods</my:a></li>
+            <li><my:a href="/article/list" class="navbar-brand">Articles</my:a></li>
             <li><my:a href="/address/list" class="navbar-brand">Addresses</my:a></li>
-            <li><my:a href="/delivery-boy/list" class="navbar-brand">Delivery boys</my:a></li>
                 
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -114,25 +113,10 @@
 </c:if>
 
 
-<!--
-
-    LIST of entities
-
--->
-
 <div class="container bg-3 text-center">
   <jsp:invoke fragment="body"/>   
 </div>
 
-
-<!--
-
-    FOOTER
-
--->
-<!--<footer class="container-fluid text-center">
-  <p>Design from Bootstrap template</p>
-</footer>-->
 
 </body>
 </html>

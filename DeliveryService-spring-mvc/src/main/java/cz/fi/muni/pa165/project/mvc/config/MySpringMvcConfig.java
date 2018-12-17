@@ -32,7 +32,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @Configuration
 @Import({DeliveryServiceWithSampleDataConfiguration.class})
-@ComponentScan(basePackages = "cz.fi.muni.pa165.delivery.mvc.controllers")
+@ComponentScan(basePackages = "cz.fi.muni.pa165.project.mvc.controllers")
 public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
 
     private final static Logger log = LoggerFactory.getLogger(MySpringMvcConfig.class);

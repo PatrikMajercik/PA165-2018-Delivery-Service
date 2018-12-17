@@ -66,7 +66,7 @@
       <ul class="nav navbar-nav">
                   
             <li><my:a href="/delivery/list" class="navbar-brand">Deliveries</my:a></li>
-            <li><my:a href="/person/list" class="navbar-brand">persons</my:a></li>
+            <li><my:a href="/person/list" class="navbar-brand">People</my:a></li>
             <li><my:a href="/goods/list" class="navbar-brand">Goods</my:a></li>
             <li><my:a href="/address/list" class="navbar-brand">Addresses</my:a></li>
             <li><my:a href="/delivery-boy/list" class="navbar-brand">Delivery boys</my:a></li>

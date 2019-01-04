@@ -146,7 +146,7 @@ public class DeliveryDaoTest extends AbstractTestNGSpringContextTests{
         address2.setStreet("Grimmauld Place");
         address2.setStreetNumber("12");
         address2.setCity("London");
-        address2.setPostalCode("WC2N 5DU");
+        address2.setPostalCode("62442");
         em.persist(address2);
 
         // Courier

@@ -68,7 +68,14 @@ public class AddressController {
             }
             return "address/new";
         }
-        addressFacade.create(formBean);
+        try {
+            addressFacade.create(formBean);
+        } catch (PersistenceException ex) {
+            return "redirect:/address/new";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("alert_danger", "Address could not be created. You probably entered invalid data. Try again.");
+            return "redirect:/address/new";
+        }
         // report success
         redirectAttributes.addFlashAttribute("alert_success", "Address was created");
         return "redirect:" + uriBuilder.path("/address/list").toUriString();
@@ -91,7 +98,7 @@ public class AddressController {
         try {
             addressFacade.delete(addressFacade.findById(id));
         } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("alert_danger", "Address #" + id + " could not be removed (internal error)" + ex.getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Cannot delete address assigned to a person. Edit/Remove the person and try again.");
             return "redirect:/address/list";
         }
         redirectAttributes.addFlashAttribute("alert_success", "Address #" + id + " was successfully removed");
@@ -129,7 +136,7 @@ public class AddressController {
         } catch (PersistenceException ex) {
             return "redirect:/address/edit/" + id;
         } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("alert_danger", "Address #" + id + " could not be updated (internal error)");
+            redirectAttributes.addFlashAttribute("alert_danger", "Address #" + id + " could not be updated. Check if you entered correct data and try again.");
             return "redirect:/address/edit/" + id;
         }
 

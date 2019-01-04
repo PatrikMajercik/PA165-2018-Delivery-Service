@@ -30,7 +30,7 @@ import javax.validation.Validator;
 @Configuration
 @Import({DeliveryServiceWithSampleDataConfiguration.class})
 @ComponentScan(basePackages = "cz.fi.muni.pa165.project.mvc.controllers")
-public class MySpringMvcConfig implements WebMvcConfigurer {
+public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
 
     private final static Logger log = LoggerFactory.getLogger(MySpringMvcConfig.class);
 

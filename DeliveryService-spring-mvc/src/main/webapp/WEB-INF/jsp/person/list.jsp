@@ -40,7 +40,7 @@
                                         <td><c:out value="${person.name}"/></td>
                                         <td><c:out value="${person.phoneNumber}"/></td>
                                         <td><c:out value="${person.email}"/></td>
-                                        <td><c:out value="${person.address}"/></td>
+                                        <td><c:out value="${person.address.street} ${person.address.streetNumber}, ${person.address.postalCode} ${person.address.city}"/></td>
                                         <td><a href="${pageContext.request.contextPath}/person/edit/${person.id}" class="btn btn-sm btn-primary glyphicon glyphicon-pencil"></a></td>
                                         <td>
                                             <form method="post" action="${pageContext.request.contextPath}/person/delete/${person.id}">

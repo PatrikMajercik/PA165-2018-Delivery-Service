@@ -1,9 +1,11 @@
 package cz.muni.fi.pa165.project.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import java.io.Serializable;
 
@@ -33,10 +35,12 @@ public class Person implements Serializable {
 
     @NotNull
     @Column(nullable = false)
+    @Length(min = 3, max = 30)
     private String name;
 
     @NotNull
     @Column(nullable = false)
+    @Pattern(regexp = "^\\+\\d{12}$")
     private String phoneNumber;
 
     @NotNull

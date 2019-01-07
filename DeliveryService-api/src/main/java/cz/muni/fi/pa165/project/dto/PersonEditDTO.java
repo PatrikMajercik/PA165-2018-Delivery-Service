@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class PersonCreateDTO {
+public class PersonEditDTO {
 
     @EqualsAndHashCode.Exclude
     private Long id;
@@ -22,5 +22,6 @@ public class PersonCreateDTO {
     private String name;
     private String phoneNumber;
     private String email;
+    private AddressDTO address;
     private Long addressId;
 }

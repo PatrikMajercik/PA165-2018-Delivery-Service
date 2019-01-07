@@ -59,7 +59,7 @@ public class AddressFacadeImplTest extends AbstractTestNGSpringContextTests {
         address2.setStreet("Grimmauld Place");
         address2.setStreetNumber("12");
         address2.setCity("London");
-        address2.setPostalCode("WC2N 5DU");
+        address2.setPostalCode("65478");
 
         MockitoAnnotations.initMocks(this);
         when(addressService.findById(address1.getId())).thenReturn(address1);

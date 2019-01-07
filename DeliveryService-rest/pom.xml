@@ -30,12 +30,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.0.4.RELEASE</version>
+            <version>4.3.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>5.0.4.RELEASE</version>
+            <version>4.3.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>

@@ -4,7 +4,7 @@ import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cz.muni.fi.pa165.project.dto.PersonCreateDTO;
+import cz.muni.fi.pa165.project.dto.PersonEditDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.facade.AddressFacade;
 import cz.muni.fi.pa165.project.facade.PersonFacade;
@@ -53,13 +53,13 @@ public class PersonController {
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newAddress(Model model) {
-        model.addAttribute("personCreate", new PersonCreateDTO());
+        model.addAttribute("personCreate", new PersonEditDTO());
         model.addAttribute("addresses", addressFacade.findAll());
         return "person/new";
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute("personCreate") PersonCreateDTO formBean, BindingResult bindingResult,
+    public String create(@ModelAttribute("personCreate") PersonEditDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
@@ -67,7 +67,15 @@ public class PersonController {
             }
             return "person/new";
         }
-        personFacade.create(formBean);
+        try {
+            personFacade.create(formBean);
+        } catch (PersistenceException ex) {
+            return "redirect:/person/new";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("alert_danger", "Person could not be created. You probably entered invalid data. Try again.");
+            return "redirect:/person/new";
+        }
+
         // report success
         redirectAttributes.addFlashAttribute("alert_success", "Person was created");
         return "redirect:" + uriBuilder.path("/person/list").toUriString();
@@ -82,8 +90,15 @@ public class PersonController {
             HttpServletResponse res) {
 
         PersonDTO personDTO = personFacade.findById(id);
+        PersonEditDTO personEditDTO = new PersonEditDTO();
+        personEditDTO.setAddress(personDTO.getAddress());
+        personEditDTO.setEmail(personDTO.getEmail());
+        personEditDTO.setName(personDTO.getName());
+        personEditDTO.setPhoneNumber(personDTO.getPhoneNumber());
+        personEditDTO.setId(personDTO.getId());
+        personEditDTO.setAddressId(personDTO.getAddress().getId());
 
-        model.addAttribute("person", personDTO);
+        model.addAttribute("person", personEditDTO);
         model.addAttribute("addresses", addressFacade.findAll());
 
         return "person/edit";
@@ -92,19 +107,19 @@ public class PersonController {
     @RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
     public String updatePerson(
             @PathVariable Long id,
-            @ModelAttribute("person") PersonDTO personDTO,
+            @ModelAttribute("person") PersonEditDTO personDTO,
             Model model,
             RedirectAttributes redirectAttributes,
             HttpServletRequest req,
             HttpServletResponse res) {
 
-        personDTO.setAddress(addressFacade.findById(personDTO.getAddress().getId()));
+        personDTO.setAddress(addressFacade.findById(personDTO.getAddressId()));
         try {
             personFacade.update(personDTO);
         } catch (PersistenceException ex) {
             return "redirect:/person/edit/" + id;
         } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("alert_danger", "Person #" + id + " could not be updated (internal error)");
+            redirectAttributes.addFlashAttribute("alert_danger", "Person #" + id + " could not be updated. Check if you entered correct data and try again.");
             return "redirect:/person/edit/" + id;
         }
 
@@ -118,7 +133,12 @@ public class PersonController {
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder,
                          RedirectAttributes redirectAttributes) {
         PersonDTO person = personFacade.findById(id);
-        personFacade.delete(person);
+        try {
+            personFacade.delete(person);
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("alert_danger", "Cannot delete person assigned to a delivery. Edit/Remove the delivery and try again.");
+            return "redirect:/person/list";
+        }
         redirectAttributes.addFlashAttribute("alert_success", "Person \"" + person.getName() + " was deleted.");
         return "redirect:" + uriBuilder.path("/person/list").toUriString();
     }

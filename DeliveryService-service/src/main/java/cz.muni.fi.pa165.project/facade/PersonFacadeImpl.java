@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.project.facade;
 import cz.muni.fi.pa165.project.AddressService;
 import cz.muni.fi.pa165.project.BeanMappingService;
 import cz.muni.fi.pa165.project.PersonService;
-import cz.muni.fi.pa165.project.dto.PersonCreateDTO;
+import cz.muni.fi.pa165.project.dto.PersonEditDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.entity.Person;
 import org.springframework.stereotype.Service;
@@ -36,18 +36,28 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public void create(PersonCreateDTO personCreateDTO) {
+    public void create(PersonEditDTO personEditDTO) {
         Person person = new Person();
-        person.setAddress(addressService.findById(personCreateDTO.getAddressId()));
-        person.setName(personCreateDTO.getName());
-        person.setEmail(personCreateDTO.getEmail());
-        person.setPhoneNumber(personCreateDTO.getPhoneNumber());
+        person.setAddress(addressService.findById(personEditDTO.getAddressId()));
+        person.setName(personEditDTO.getName());
+        person.setEmail(personEditDTO.getEmail());
+        person.setPhoneNumber(personEditDTO.getPhoneNumber());
         personService.create(person);
     }
 
     public void update(PersonDTO personDTO) {
         Person mappedAddress = beanMappingService.mapTo(personDTO, Person.class);
         personService.update(mappedAddress);
+    }
+
+    public void update(PersonEditDTO personEditDTO) {
+        Person person = new Person();
+        person.setAddress(addressService.findById(personEditDTO.getAddressId()));
+        person.setName(personEditDTO.getName());
+        person.setEmail(personEditDTO.getEmail());
+        person.setPhoneNumber(personEditDTO.getPhoneNumber());
+        person.setId(personEditDTO.getId());
+        personService.update(person);
     }
 
     public void delete(PersonDTO personDTO) {

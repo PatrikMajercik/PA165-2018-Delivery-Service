@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.project.BeanMappingService;
 import cz.muni.fi.pa165.project.PersonService;
 import cz.muni.fi.pa165.project.configuration.ServiceConfiguration;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
+import cz.muni.fi.pa165.project.dto.PersonEditDTO;
 import cz.muni.fi.pa165.project.entity.Address;
 import cz.muni.fi.pa165.project.entity.Person;
 import org.mockito.InjectMocks;
@@ -70,7 +71,7 @@ public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
         address2.setStreet("Grimmauld Place");
         address2.setStreetNumber("12");
         address2.setCity("London");
-        address2.setPostalCode("WC2N 5DU");
+        address2.setPostalCode("65478");
 
         person2 = new Person();
         person2.setId(2L);

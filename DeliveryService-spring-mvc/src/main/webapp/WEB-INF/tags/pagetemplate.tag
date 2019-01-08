@@ -73,7 +73,7 @@
       <ul class="nav navbar-nav navbar-right">
         
           <li>
-            <a href="${pageContext.request.contextPath}/auth/login">Login</a>
+            <a href="${pageContext.request.contextPath}/">LogOut</a>
           </li>
         
       </ul>
@@ -115,6 +115,22 @@
 <div class="container bg-3 text-center">
   <jsp:invoke fragment="body"/>   
 </div>
+
+
+
+    <!-- authenticated user info -->
+    <c:if test="${not empty authenticatedUser}">
+    <div class="row">
+        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <c:out value="${authenticatedUser.name} ${authenticatedUser.email}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    </c:if>
 
 
 </body>

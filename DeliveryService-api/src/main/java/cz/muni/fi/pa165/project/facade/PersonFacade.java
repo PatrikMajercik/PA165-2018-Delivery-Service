@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.project.facade;
 
+import cz.muni.fi.pa165.project.dto.PersonAuthenticateDTO;
 import cz.muni.fi.pa165.project.dto.PersonEditDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 
@@ -67,7 +68,7 @@ public interface PersonFacade {
      *
      * @return list of all people with given email
      */
-    List<PersonDTO> findPersonByEmail(String email);
+    PersonDTO findPersonByEmail(String email);
 
     /**
      * Return all people
@@ -75,4 +76,16 @@ public interface PersonFacade {
      * @return list of all people
      */
     List<PersonDTO> findAll();
+    
+    
+    
+	/**
+	 * Try to authenticate a user. Return true only if the hashed password matches the records.
+	 */
+	boolean authenticate(PersonAuthenticateDTO u);
+
+	/**
+	 * Check if the given user is admin.
+	 */
+	boolean isAdmin(PersonDTO u);
 }

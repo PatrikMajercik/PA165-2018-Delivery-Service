@@ -42,7 +42,7 @@ public interface ArticleFacade {
     /**
      * Remove ArticleDTO specified as parameter
      *
-     * @param id
+     * @param a
      */
-    void delete(Long id);
+    void delete(ArticleDTO a);
 }

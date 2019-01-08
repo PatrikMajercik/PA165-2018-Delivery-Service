@@ -13,11 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 /**
  * TODO: create javadoc *
@@ -77,14 +81,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Address address7 = address(Address.builder().city("Praha").postalCode("69857").street("Kefirova").streetNumber("478").build());
         Address address8 = address(Address.builder().city("Zlin").postalCode("03609").street("Botanicka").streetNumber("2").build());
 
-        Person person1 = person(Person.builder().name("Patrik Majercik").email("dusan@gmail.com").phoneNumber("+421090826564").address(address1).build());
-        Person person2 = person(Person.builder().name("Fero Kral").email("krava@gmail.com").phoneNumber("+421590826564").address(address2).build());
-        Person person3 = person(Person.builder().name("Los Characteros").email("trava@gmail.com").phoneNumber("+421074165644").address(address3).build());
-        Person person4 = person(Person.builder().name("Severus Snape").email("drevo@gmail.com").phoneNumber("+421090654221").address(address4).build());
-        Person person5 = person(Person.builder().name("Laci Strajk").email("clivo@gmail.com").phoneNumber("+421094895647").address(address5).build());
-        Person person6 = person(Person.builder().name("Albus Dumbledore").email("myjava@gmail.com").phoneNumber("+421054621564").address(address6).build());
-        Person person7 = person(Person.builder().name("Harry Potter").email("krivo@gmail.com").phoneNumber("+421458852654").address(address7).build());
-        Person person8 = person(Person.builder().name("Ron Weasley").email("serenada@gmail.com").phoneNumber("+421154895640").address(address8).build());
+        Person person1 = person(Person.builder().name("Patrik Majercik").email("dusan@gmail.com").phoneNumber("+421090826564").address(address1).admin(true).passwordHash(createHash("admin")).build());
+        Person person2 = person(Person.builder().name("Fero Kral").email("krava@gmail.com").phoneNumber("+421590826564").address(address2).admin(false).passwordHash(createHash("pleb")).build());
+        Person person3 = person(Person.builder().name("Los Characteros").email("trava@gmail.com").phoneNumber("+421074165644").address(address3).admin(false).passwordHash(createHash("pleb")).build());
+        Person person4 = person(Person.builder().name("Severus Snape").email("drevo@gmail.com").phoneNumber("+421090654221").address(address4).admin(false).passwordHash(createHash("pleb")).build());
+        Person person5 = person(Person.builder().name("Laci Strajk").email("clivo@gmail.com").phoneNumber("+421094895647").address(address5).admin(false).passwordHash(createHash("pleb")).build());
+        Person person6 = person(Person.builder().name("Albus Dumbledore").email("myjava@gmail.com").phoneNumber("+421054621564").address(address6).admin(false).passwordHash(createHash("pleb")).build());
+        Person person7 = person(Person.builder().name("Harry Potter").email("krivo@gmail.com").phoneNumber("+421458852654").address(address7).admin(false).passwordHash(createHash("pleb")).build());
+        Person person8 = person(Person.builder().name("Ron Weasley").email("serenada@gmail.com").phoneNumber("+421154895640").address(address8).admin(false).passwordHash(createHash("pleb")).build());
 
         Delivery delivery1 = delivery(person1, person2, articleList1, null, null, new BigDecimal(250), DeliveryState.DELIVERED);
         Delivery delivery2 = delivery(person2, person3, articleList2, null, null, new BigDecimal(150), DeliveryState.DELIVERED);
@@ -131,5 +135,72 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     private Address address(Address address) {
         addressService.create(address);
         return address;
+    }
+   
+    
+    //see  https://crackstation.net/hashing-security.htm#javasourcecode
+    private static String createHash(String password) {
+        final int SALT_BYTE_SIZE = 24;
+        final int HASH_BYTE_SIZE = 24;
+        final int PBKDF2_ITERATIONS = 1000;
+        // Generate a random salt
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[SALT_BYTE_SIZE];
+        random.nextBytes(salt);
+        // Hash the password
+        byte[] hash = pbkdf2(password.toCharArray(), salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
+        // format iterations:salt:hash
+        return PBKDF2_ITERATIONS + ":" + toHex(salt) + ":" + toHex(hash);
+    }
+
+    private static byte[] pbkdf2(char[] password, byte[] salt, int iterations, int bytes) {
+        try {
+            PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, bytes * 8);
+            return SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(spec).getEncoded();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean validatePassword(String password, String correctHash) {
+        if(password==null) return false;
+        if(correctHash==null) throw new IllegalArgumentException("password hash is null");
+        String[] params = correctHash.split(":");
+        int iterations = Integer.parseInt(params[0]);
+        byte[] salt = fromHex(params[1]);
+        byte[] hash = fromHex(params[2]);
+        byte[] testHash = pbkdf2(password.toCharArray(), salt, iterations, hash.length);
+        return slowEquals(hash, testHash);
+    }
+
+    /**
+     * Compares two byte arrays in length-constant time. This comparison method
+     * is used so that password hashes cannot be extracted from an on-line
+     * system using a timing attack and then attacked off-line.
+     *
+     * @param a the first byte array
+     * @param b the second byte array
+     * @return true if both byte arrays are the same, false if not
+     */
+    private static boolean slowEquals(byte[] a, byte[] b) {
+        int diff = a.length ^ b.length;
+        for (int i = 0; i < a.length && i < b.length; i++)
+            diff |= a[i] ^ b[i];
+        return diff == 0;
+    }
+
+    private static byte[] fromHex(String hex) {
+        byte[] binary = new byte[hex.length() / 2];
+        for (int i = 0; i < binary.length; i++) {
+            binary[i] = (byte) Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
+        }
+        return binary;
+    }
+
+    private static String toHex(byte[] array) {
+        BigInteger bi = new BigInteger(1, array);
+        String hex = bi.toString(16);
+        int paddingLength = (array.length * 2) - hex.length();
+        return paddingLength > 0 ? String.format("%0" + paddingLength + "d", 0) + hex : hex;
     }
 }

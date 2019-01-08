@@ -52,7 +52,7 @@ public interface PersonService {
      *
      * @return list of all people with given email
      */
-    List<Person> findPersonByEmail(String email);
+    Person findPersonByEmail(String email);
 
     /**
      * Return all people
@@ -60,5 +60,18 @@ public interface PersonService {
      * @return list of all people
      */
     List<Person> findAll();
+    
+    
+	/**
+	 * Try to authenticate a user. Return true only if the hashed password matches the records.
+	 */
+	boolean authenticate(Person u, String password);
+
+	/**
+	 * Check if the given user is admin.
+	 */
+	boolean isAdmin(Person u);
+        
+        
 }
 

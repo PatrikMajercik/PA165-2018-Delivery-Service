@@ -76,7 +76,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public List<Person> findPersonByEmail(@NotBlank @NotNull String email) throws IllegalArgumentException {
+    public Person findPersonByEmail(@NotBlank @NotNull String email) throws IllegalArgumentException {
         if (email == null) {
             throw new IllegalArgumentException("email is null");
         }
@@ -84,7 +84,7 @@ public class PersonDaoImpl implements PersonDao {
             throw new IllegalArgumentException("email is empty");
         }
         return entityManager.createQuery("SELECT p FROM Person p WHERE email=:email",
-                Person.class).setParameter("email", email).getResultList();
+                Person.class).setParameter("email", email).getSingleResult();
     }
 
     @Override

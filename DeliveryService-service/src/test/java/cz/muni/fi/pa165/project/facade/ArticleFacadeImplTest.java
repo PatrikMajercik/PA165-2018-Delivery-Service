@@ -79,8 +79,8 @@ public class ArticleFacadeImplTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testRemoveArticle() {
-        articleFacade.delete(articleDTO1.getId());
-        verify(articleService).delete(article1.getId());
+        articleFacade.delete(articleDTO1);
+        verify(articleService).delete(article1);
     }
 
     @Test

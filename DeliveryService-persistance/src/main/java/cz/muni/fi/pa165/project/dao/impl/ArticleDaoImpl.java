@@ -39,7 +39,7 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public Article update(@NotNull Article article) throws IllegalArgumentException, ValidationException {
+    public void update(@NotNull Article article) throws IllegalArgumentException, ValidationException {
 
         if (article == null) {
             throw new IllegalArgumentException("article is null");
@@ -47,7 +47,8 @@ public class ArticleDaoImpl implements ArticleDao {
         if (article.getId() == null) {
             throw new ValidationException("article id is null");
         }
-        return em.merge(article);
+        
+        em.merge(article);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class ArticleDaoImpl implements ArticleDao {
             throw new ValidationException("article id is null");
         }
 
-        em.remove(article);
+        em.remove(findById(article.getId()));
     }
 
     @Override

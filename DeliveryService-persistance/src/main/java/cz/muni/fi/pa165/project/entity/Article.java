@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Article entity
@@ -26,12 +27,12 @@ public class Article {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Setter(AccessLevel.NONE)
     @EqualsAndHashCode.Exclude
     private Long id;
     
     @NotNull
     @Column(nullable = false)
+    @Length(min = 3, max = 20)
     private String name;
     
     @NotNull

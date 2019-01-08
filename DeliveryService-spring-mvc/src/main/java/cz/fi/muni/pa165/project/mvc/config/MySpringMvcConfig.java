@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.project.mvc.config;
 
 import cz.fi.muni.pa165.project.DeliveryServiceWithSampleDataConfiguration;
+import cz.fi.muni.pa165.project.mvc.security.SecurityConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -28,7 +29,7 @@ import javax.validation.Validator;
 
 @EnableWebMvc
 @Configuration
-@Import({DeliveryServiceWithSampleDataConfiguration.class})
+@Import({DeliveryServiceWithSampleDataConfiguration.class, SecurityConfig.class})
 @ComponentScan(basePackages = "cz.fi.muni.pa165.project.mvc.controllers")
 public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
 

@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class ArticleDTO {
     @EqualsAndHashCode.Exclude
     private Long id;
+    
     private String name;
     private BigDecimal weight;
 }

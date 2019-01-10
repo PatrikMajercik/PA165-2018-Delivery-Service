@@ -55,7 +55,7 @@
                         <div class="form-group ${name_error?'has-error':''}">
                         <form:label path="price" cssClass="col-sm-2 control-label">Price</form:label>
                         <div class="col-sm-10">
-                            <form:input path="price" cssClass="form-control"/>
+                            <form:input path="price" cssClass="form-control" required="required"/>
                             <form:errors path="price" cssClass="help-block"/>
                         </div>
                             <form:errors path="price" cssClass="error"/>

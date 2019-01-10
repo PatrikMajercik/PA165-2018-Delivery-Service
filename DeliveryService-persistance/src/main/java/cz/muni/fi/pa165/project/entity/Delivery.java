@@ -55,7 +55,7 @@ public class Delivery {
     @ManyToOne
     private Person customer;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="fk_id")
     private List<Article> articles;
 }

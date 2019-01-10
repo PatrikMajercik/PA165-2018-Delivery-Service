@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static java.util.Arrays.asList;
@@ -72,7 +73,6 @@ public class DeliveryFacadeTest extends AbstractTestNGSpringContextTests {
 
         delivery1.setCustomer(p1);
         delivery1.setCourier(p2);
-
         delivery2.setCustomer(p2);
         delivery2.setCourier(p1);
         this.deliveryDTO1 = beanMappingService.mapTo(delivery1, DeliveryDTO.class);

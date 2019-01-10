@@ -61,11 +61,7 @@ public class DeliveryController {
         log.debug("articles()");
         return articleFacade.findAll();
     }
-//    @ModelAttribute("state")
-//    public DeliveryState[] states() {
-//        log.debug("states()");
-//        return DeliveryState.values();
-//    }
+
 
     private final static Logger log = LoggerFactory.getLogger(DeliveryController.class);
 
@@ -75,10 +71,29 @@ public class DeliveryController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        log.info(deliveryFacade.findAll().toString());
-        log.info(articleFacade.findAll().toString());
+        log.info("Listin deliveries");
         model.addAttribute("deliveries", deliveryFacade.findAll());
         return "delivery/list";
+    }
+
+    @RequestMapping(value = "/ordered", method = RequestMethod.POST)
+    public String ordered(
+            @ModelAttribute("person") PersonDTO personDTO,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            HttpServletRequest req,
+            HttpServletResponse res) {
+        log.info("Person submited" + personDTO);
+        model.addAttribute("deliveries", deliveryFacade.reorderCouriersDeliveries(personFacade.findById(personDTO.getId())));
+        return "delivery/list";
+
+    }
+
+    @RequestMapping(value = "/ordered", method = RequestMethod.GET)
+    public String ordered(Model model) {
+        log.debug("new()");
+        model.addAttribute("person", new PersonDTO());
+        return "delivery/ordered";
     }
 
     /**

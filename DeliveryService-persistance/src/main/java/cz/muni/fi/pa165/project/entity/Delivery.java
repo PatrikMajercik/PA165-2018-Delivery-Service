@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -39,11 +39,11 @@ public class Delivery {
     private DeliveryState deliveryState;
     
     @Nullable
-    private LocalDateTime ordered;
+    private LocalDate ordered;
     
 
     @Nullable
-    private LocalDateTime delivered;
+    private LocalDate delivered;
     
     @NotNull
     @Column(nullable = false)

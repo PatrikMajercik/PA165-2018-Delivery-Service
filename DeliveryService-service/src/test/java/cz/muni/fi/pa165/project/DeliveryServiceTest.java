@@ -6,7 +6,7 @@ import cz.muni.fi.pa165.project.entity.Address;
 import cz.muni.fi.pa165.project.entity.Delivery;
 import cz.muni.fi.pa165.project.entity.Person;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -163,6 +163,6 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
         when(deliveryDao.findAll()).thenReturn(new ArrayList<>(deliveries));
         Person courier = p1;
         List<Delivery> ordered = deliveryService.reorderCouriersDeliveries(courier);
-        Assert.assertNull(ordered);
+        Assert.assertTrue(ordered.isEmpty());
     }
 }

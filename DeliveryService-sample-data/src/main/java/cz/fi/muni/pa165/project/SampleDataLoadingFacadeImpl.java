@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -86,14 +86,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Person person7 = person(Person.builder().name("Harry Potter").email("krivo@gmail.com").phoneNumber("+421458852654").address(address7).build());
         Person person8 = person(Person.builder().name("Ron Weasley").email("serenada@gmail.com").phoneNumber("+421154895640").address(address8).build());
 
-        Delivery delivery1 = delivery(person1, person2, articleList1, null, null, new BigDecimal(250), DeliveryState.DELIVERED);
-        Delivery delivery2 = delivery(person2, person3, articleList2, null, null, new BigDecimal(150), DeliveryState.DELIVERED);
-        Delivery delivery3 = delivery(person3, person2, articleList3, null, null, new BigDecimal(2550), DeliveryState.DELIVERED);
-        Delivery delivery4 = delivery(person4, person2, articleList4, null, null, new BigDecimal(50), DeliveryState.DELIVERED);
-        Delivery delivery5 = delivery(person5, person2, articleList5, null, null, new BigDecimal(150), DeliveryState.DELIVERED);
-        Delivery delivery6 = delivery(person6, person2, articleList6, null, null, new BigDecimal(350), DeliveryState.DELIVERED);
-        Delivery delivery7 = delivery(person7, person2, articleList7, null, null, new BigDecimal(450), DeliveryState.DELIVERED);
-        Delivery delivery8 = delivery(person8, person2, articleList8, null, null, new BigDecimal(650), DeliveryState.DELIVERED);
+        Delivery delivery1 = delivery(person1, person2, articleList1, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(250), DeliveryState.DELIVERED);
+        Delivery delivery2 = delivery(person2, person3, articleList2, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(150), DeliveryState.DELIVERED);
+        Delivery delivery3 = delivery(person3, person2, articleList3, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(2550), DeliveryState.DELIVERED);
+        Delivery delivery4 = delivery(person4, person2, articleList4, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(50), DeliveryState.DELIVERED);
+        Delivery delivery5 = delivery(person5, person2, articleList5, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(150), DeliveryState.DELIVERED);
+        Delivery delivery6 = delivery(person6, person2, articleList6, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(350), DeliveryState.DELIVERED);
+        Delivery delivery7 = delivery(person7, person2, articleList7, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(450), DeliveryState.DELIVERED);
+        Delivery delivery8 = delivery(person8, person2, articleList8, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(650), DeliveryState.DELIVERED);
 
         log.info("Sample data loaded was completed successfully.");
     }
@@ -108,7 +108,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         return article;
     }
 
-    private Delivery delivery(Person customer, Person courier, List<Article> articles, LocalDateTime ordered, LocalDateTime delivered, BigDecimal price, DeliveryState deliveryState) {
+    private Delivery delivery(Person customer, Person courier, List<Article> articles, LocalDate ordered, LocalDate delivered, BigDecimal price, DeliveryState deliveryState) {
         Delivery delivery = new Delivery();
         delivery.setArticles(articles);
         delivery.setCourier(courier);

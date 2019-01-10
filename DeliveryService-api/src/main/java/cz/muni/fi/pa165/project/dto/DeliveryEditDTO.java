@@ -7,7 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalDate;
 
 /**
  * TODO: create javadoc *
@@ -22,8 +23,8 @@ public class DeliveryEditDTO {
     @EqualsAndHashCode.Exclude
     private Long id;
     private DeliveryState deliveryState;
-    private LocalDateTime ordered;
-    private LocalDateTime delivered;
+    private LocalDate ordered;
+    private LocalDate delivered;
     private BigDecimal price;
     private Long courierId;
     private PersonDTO customer;

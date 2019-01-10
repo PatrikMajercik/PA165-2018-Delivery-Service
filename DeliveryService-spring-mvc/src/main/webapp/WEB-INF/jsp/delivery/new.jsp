@@ -26,19 +26,7 @@
                             <p class="help-block"><form:errors path="customerId" cssClass="error"/></p>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="form-group ${name_error?'has-error':''}">
-                        <form:label path="courierId" cssClass="col-sm-2 control-label">Courier</form:label>
-                        <div class="col-sm-10">
-                            <form:select path="courierId" cssClass="form-control">
-                                <c:forEach items="${persons}" var="c">
-                                    <form:option value="${c.id}">${c.name}</form:option>
-                                </c:forEach>
-                            </form:select>
-                            <form:errors path="courierId" cssClass="error"/>
-                            <p class="help-block"><form:errors path="customerId" cssClass="error"/></p>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <div class="form-group ${name_error?'has-error':''}">
                         <form:label path="articleID" cssClass="col-sm-2 control-label">Articles</form:label>
@@ -55,7 +43,7 @@
                         <div class="form-group ${name_error?'has-error':''}">
                         <form:label path="price" cssClass="col-sm-2 control-label">Price</form:label>
                         <div class="col-sm-10">
-                            <form:input path="price" cssClass="form-control" required="required"/>
+                            <form:input path="price" type="number" cssClass="form-control" required="required"/>
                             <form:errors path="price" cssClass="help-block"/>
                         </div>
                             <form:errors path="price" cssClass="error"/>

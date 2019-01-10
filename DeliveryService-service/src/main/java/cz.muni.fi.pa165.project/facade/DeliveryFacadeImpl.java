@@ -49,7 +49,6 @@ public class DeliveryFacadeImpl implements DeliveryFacade{
     public void create(DeliveryCreateDTO d) {
         Delivery delivery = new Delivery();
         delivery.setCustomer(personService.findById(d.getCustomerId()));
-        delivery.setCourier(personService.findById(d.getCourierId()));
         delivery.setPrice(d.getPrice());
         List<Article> articles = new ArrayList<>();
         articles.add(articleService.findById(d.getArticleID()));

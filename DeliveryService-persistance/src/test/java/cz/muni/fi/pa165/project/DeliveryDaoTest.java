@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,8 +171,8 @@ public class DeliveryDaoTest extends AbstractTestNGSpringContextTests{
         d.setCustomer(person);
         d.setCourier(person2);
         d.setArticles(articles);
-        LocalDateTime orderTime = LocalDateTime.of(2017, Month.DECEMBER, 20, 19, 30, 40);
-        LocalDateTime deliveryTime = LocalDateTime.of(2017, Month.DECEMBER, 24, 19, 30, 40);
+        LocalDate orderTime = LocalDate.now();
+        LocalDate deliveryTime = LocalDate.now();
         d.setOrdered(orderTime);
         d.setDelivered(deliveryTime);
         d.setDeliveryState(DeliveryState.CREATED);

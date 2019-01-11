@@ -13,16 +13,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <jsp:invoke fragment="head"/>
   <style>
-      
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
+
+    /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       border-radius: 0;
     }
-    
+
     /* Add a gray background color, some padding to the footer and position */
     footer {
       background-color: #f2f2f2;
@@ -32,12 +33,12 @@
       left: 0px;
       width:100%;
     }
-    
+
     /* because of footer */
     body {
       min-height: 100vh;
     }
-    
+
     /* table text align */
     table {
       text-align: left;
@@ -58,25 +59,24 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
-      <my:a href="/" class="navbar-brand">Delivery Service</my:a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-          <li><my:a href="/" class="navbar-brand">Delivery Service</my:a></li>
-            <li><my:a href="/delivery/list" class="navbar-brand">Deliveries</my:a></li>
-            <li><my:a href="/person/list" class="navbar-brand">People</my:a></li>
-            <li><my:a href="/article/list" class="navbar-brand">Articles</my:a></li>
-            <li><my:a href="/address/list" class="navbar-brand">Addresses</my:a></li>
-                
+            <li><my:a href="/" class="navbar-brand"><i class="fas fa-home"></i> Delivery Service</my:a></li>
+            <li><my:a href="/delivery/list" class="navbar-brand"><i class="fas fa-truck"></i> Deliveries</my:a></li>
+            <li><my:a href="/person/list" class="navbar-brand"><i class="fas fa-user"></i> People</my:a></li>
+            <li><my:a href="/article/list" class="navbar-brand"><i class="fas fa-gift"></i> Articles</my:a></li>
+            <li><my:a href="/address/list" class="navbar-brand"><i class="fas fa-map-marked"></i> Addresses</my:a></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+
           <li>
             <a href="${pageContext.request.contextPath}/auth/login">Login</a>
           </li>
-        
+
       </ul>
     </div>
   </div>

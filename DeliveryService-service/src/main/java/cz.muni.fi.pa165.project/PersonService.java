@@ -32,7 +32,12 @@ public interface PersonService {
      * @param person person
      */
     void update(Person person);
-
+/**
+     * Create new person
+     *
+     * @param person person
+     */
+    void updateWithPass(Person person, String pass);
     /**
      * Delete given person
      *

@@ -17,6 +17,14 @@ public interface PersonService {
      * @param person person
      */
     void create(Person person);
+    
+    
+    /**
+     * Create new person
+     *
+     * @param person person
+     */
+    void createWithPass(Person person, String pass);
 
     /**
      * Updates given person

@@ -24,7 +24,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 @Controller
 @RequestMapping("/address")
-public class AddressController {
+public class AddressController extends HomeController{
 
     private final AddressFacade addressFacade;
 
@@ -44,6 +44,7 @@ public class AddressController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("addresses", addressFacade.findAll());
+        model.addAttribute("bestCity", addressFacade.findCityWithMostAddresses());
         return "address/list";
     }
 

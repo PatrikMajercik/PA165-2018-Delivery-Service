@@ -22,7 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 @Controller
 @RequestMapping("/person")
-public class PersonController {
+public class PersonController extends HomeController{
 
     private final PersonFacade personFacade;
 

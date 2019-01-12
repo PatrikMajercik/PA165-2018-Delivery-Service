@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <label for="weight" class="col-form-label">Weight:</label>
-                            <form:input path="weight" type="number" class="form-control" id="weight" name="weight" required="required" placeholder="Weight"/>
+                            <form:input path="weight"  class="form-control" id="weight" name="weight" required="required" placeholder="Weight"/>
                         </div>                        
                     </div>
                     

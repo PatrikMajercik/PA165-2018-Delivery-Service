@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -23,8 +23,8 @@ public class DeliveryCreateDTO {
         @EqualsAndHashCode.Exclude
         private Long id;
         private DeliveryState deliveryState;
-        private LocalDateTime ordered;
-        private LocalDateTime delivered;
+        private LocalDate ordered;
+        private LocalDate delivered;
         private BigDecimal price;
         private Long courierId;
         private Long customerId;
@@ -46,19 +46,19 @@ public class DeliveryCreateDTO {
         this.deliveryState = deliveryState;
     }
 
-    public LocalDateTime getOrdered() {
+    public LocalDate getOrdered() {
         return ordered;
     }
 
-    public void setOrdered(LocalDateTime ordered) {
+    public void setOrdered(LocalDate ordered) {
         this.ordered = ordered;
     }
 
-    public LocalDateTime getDelivered() {
+    public LocalDate getDelivered() {
         return delivered;
     }
 
-    public void setDelivered(LocalDateTime delivered) {
+    public void setDelivered(LocalDate delivered) {
         this.delivered = delivered;
     }
 

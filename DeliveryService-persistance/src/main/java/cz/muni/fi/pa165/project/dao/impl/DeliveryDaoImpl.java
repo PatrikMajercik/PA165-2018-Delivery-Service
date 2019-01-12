@@ -56,7 +56,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
         if (delivery.getId() == null) {
             throw new ValidationException("delivery id is null");
         }
-        em.remove(delivery);
+        em.remove(findById(delivery.getId()));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.project.mvc.controllers;
+package cz.fi.muni.pa165.project.mvc.config.controllers;
 
 import cz.muni.fi.pa165.project.dto.ArticleDTO;
 import cz.muni.fi.pa165.project.facade.ArticleFacade;
@@ -16,9 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 /**
  * SpringMVC Controller for administering articles.
@@ -27,7 +24,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
  */
 @Controller
 @RequestMapping("/article")
-public class ArticleController {
+public class ArticleController extends HomeController{
 
     private final static Logger log = LoggerFactory.getLogger(ArticleController.class);
 
@@ -143,14 +140,5 @@ public class ArticleController {
 
      }
     
-    
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){    
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/article/list";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
-}
 
 }

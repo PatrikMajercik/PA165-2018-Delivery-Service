@@ -25,6 +25,12 @@ public class PersonServiceImpl implements PersonService {
     public void create(Person person) {
         personDao.create(person);
     }
+    
+    @Override
+    public void createWithPass(Person p, String pass){
+        p.setPasswordHash(createHash(pass));
+        personDao.create(p);        
+    }
 
     public void update(Person person) {
         personDao.update(person);

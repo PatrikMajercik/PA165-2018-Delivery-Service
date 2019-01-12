@@ -57,6 +57,7 @@
                 </div>
         	<!-- /.box -->
             </div>
+            <td><c:out value="City with most addresses: ${bestCity}"/></td>
         </div>
 
     </jsp:attribute>

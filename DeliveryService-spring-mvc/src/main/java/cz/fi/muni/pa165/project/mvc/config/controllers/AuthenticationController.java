@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.project.mvc.controllers;
+package cz.fi.muni.pa165.project.mvc.config.controllers;
 import cz.muni.fi.pa165.project.dto.PersonAuthenticateDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -43,7 +43,9 @@ public class PersonFacadeImpl implements PersonFacade {
         person.setName(personEditDTO.getName());
         person.setEmail(personEditDTO.getEmail());
         person.setPhoneNumber(personEditDTO.getPhoneNumber());
-        personService.create(person);
+        person.setAdmin(personEditDTO.getAdmin());
+        personService.createWithPass(person, personEditDTO.getPassword());
+        //personService.create(person);
     }
 
     public void update(PersonDTO personDTO) {
@@ -58,7 +60,8 @@ public class PersonFacadeImpl implements PersonFacade {
         person.setEmail(personEditDTO.getEmail());
         person.setPhoneNumber(personEditDTO.getPhoneNumber());
         person.setId(personEditDTO.getId());
-        personService.update(person);
+        person.setAdmin(personEditDTO.getAdmin());
+        personService.updateWithPass(person, personEditDTO.getPassword());
     }
 
     public void delete(PersonDTO personDTO) {
@@ -93,4 +96,5 @@ public class PersonFacadeImpl implements PersonFacade {
     public boolean isAdmin(PersonDTO u) {
         return personService.isAdmin(beanMappingService.mapTo(u, Person.class));
     }
+    
 }

@@ -52,7 +52,7 @@ public class PersonController extends HomeController{
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newAddress(Model model) {
+    public String newPerson(Model model) {
         model.addAttribute("personCreate", new PersonEditDTO());
         model.addAttribute("addresses", addressFacade.findAll());
         return "person/new";
@@ -67,6 +67,7 @@ public class PersonController extends HomeController{
             }
             return "person/new";
         }
+        formBean.setAdmin(false);
         try {
             personFacade.create(formBean);
         } catch (PersistenceException ex) {
@@ -97,6 +98,8 @@ public class PersonController extends HomeController{
         personEditDTO.setPhoneNumber(personDTO.getPhoneNumber());
         personEditDTO.setId(personDTO.getId());
         personEditDTO.setAddressId(personDTO.getAddress().getId());
+        personEditDTO.setPassword(personDTO.getPassword());
+        personEditDTO.setAdmin(personDTO.getAdmin());
 
         model.addAttribute("person", personEditDTO);
         model.addAttribute("addresses", addressFacade.findAll());

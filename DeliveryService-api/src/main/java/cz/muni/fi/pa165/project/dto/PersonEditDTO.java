@@ -24,4 +24,6 @@ public class PersonEditDTO {
     private String email;
     private AddressDTO address;
     private Long addressId;
+    private String password;
+    private Boolean admin;
 }

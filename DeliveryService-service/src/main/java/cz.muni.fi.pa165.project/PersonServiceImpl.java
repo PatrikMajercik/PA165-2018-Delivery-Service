@@ -35,6 +35,11 @@ public class PersonServiceImpl implements PersonService {
     public void update(Person person) {
         personDao.update(person);
     }
+    
+    public void updateWithPass(Person person, String pass) {
+        person.setPasswordHash(createHash(pass));
+        personDao.update(person);
+    }
 
     public void delete(Person person) {
         personDao.delete(person);

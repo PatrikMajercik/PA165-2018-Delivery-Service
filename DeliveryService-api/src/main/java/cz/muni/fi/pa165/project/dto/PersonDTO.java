@@ -23,4 +23,6 @@ public class PersonDTO {
     private String name;
     private String phoneNumber;
     private String email;
+    private String password;
+    private Boolean admin;
 }

@@ -37,6 +37,14 @@
                                 </c:forEach>
                             </form:select> 
                         </div>
+                        <div class="col-xs-12 col-md-6">
+                            <label for="password" class="col-form-label">Password:</label>
+                            <form:input path="password" type="text" class="form-control" id="password" name="password" required="required" placeholder="password"/>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <label for="admin" class="col-form-label">Admin:</label>
+                            <form:checkbox path="admin"/>
+                        </div>
                     </div>
                                         
                     <div class="col-xs-12 col-md-6">

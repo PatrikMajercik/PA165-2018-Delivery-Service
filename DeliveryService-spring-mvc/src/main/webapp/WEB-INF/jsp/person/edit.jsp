@@ -15,7 +15,7 @@
                     
                     <div class="form-group row">
                         <div class="col-xs-12">
-                            ID <c:out value="${person.id}"/>
+                            ID <c:out value="${person.id}" />
                         </div>                                         
                         <div class="col-xs-12 col-md-6">
                             <label for="name" class="col-form-label">Name:</label>

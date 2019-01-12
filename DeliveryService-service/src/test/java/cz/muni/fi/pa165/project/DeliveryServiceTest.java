@@ -3,8 +3,12 @@ package cz.muni.fi.pa165.project;
 import cz.muni.fi.pa165.project.configuration.ServiceConfiguration;
 import cz.muni.fi.pa165.project.dao.DeliveryDao;
 import cz.muni.fi.pa165.project.entity.Address;
+import cz.muni.fi.pa165.project.entity.Article;
 import cz.muni.fi.pa165.project.entity.Delivery;
 import cz.muni.fi.pa165.project.entity.Person;
+import java.math.BigDecimal;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +43,7 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
     private Delivery delivery2;
     private Delivery delivery3;
     private Delivery delivery4;
+    private Article a1;
     private Person p1;
     private Person p2;
     private Person p3;
@@ -60,6 +65,7 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
         ad2 = new Address();
         ad3 = new Address();
         ad4 = new Address();
+        a1 = new Article();
         delivery1 = new Delivery();
         delivery2 = new Delivery();
         delivery3 = new Delivery();
@@ -74,6 +80,9 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
         ad4.setCity("Praha");
         ad4.setStreet("Frantova");
         
+        a1.setName("article");
+        a1.setWeight(BigDecimal.ZERO);
+        
         p1.setAddress(ad1);
         p1.setName("prvy");
         p2.setAddress(ad2);
@@ -86,18 +95,22 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
         delivery1.setId(1L);
         delivery1.setCustomer(p1);
         delivery1.setCourier(p5);
+        delivery1.setArticle(a1);
         
         delivery2.setId(2L);
         delivery2.setCustomer(p2);
         delivery2.setCourier(p5);
+        delivery2.setArticle(a1);
         
         delivery3.setId(3L);
         delivery3.setCustomer(p3);
         delivery3.setCourier(p5);
+        delivery3.setArticle(a1);
         
         delivery4.setId(4L);
         delivery4.setCustomer(p4);
         delivery4.setCourier(p5);
+        delivery4.setArticle(a1);
         MockitoAnnotations.initMocks(this);
     }
     
@@ -161,6 +174,6 @@ public class DeliveryServiceTest extends AbstractTestNGSpringContextTests {
         when(deliveryDao.findAll()).thenReturn(new ArrayList<>(deliveries));
         Person courier = p1;
         List<Delivery> ordered = deliveryService.reorderCouriersDeliveries(courier);
-        Assert.assertNull(ordered);
+        Assert.assertTrue(ordered.isEmpty());
     }
 }

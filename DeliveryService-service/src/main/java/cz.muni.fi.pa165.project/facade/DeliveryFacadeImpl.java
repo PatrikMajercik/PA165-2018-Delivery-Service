@@ -12,7 +12,6 @@ import cz.muni.fi.pa165.project.entity.Delivery;
 import cz.muni.fi.pa165.project.entity.DeliveryState;
 import cz.muni.fi.pa165.project.entity.Person;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,11 +48,10 @@ public class DeliveryFacadeImpl implements DeliveryFacade{
     public void create(DeliveryCreateDTO d) {
         Delivery delivery = new Delivery();
         delivery.setCustomer(personService.findById(d.getCustomerId()));
-        delivery.setCourier(personService.findById(d.getCourierId()));
         delivery.setPrice(d.getPrice());
-        List<Article> articles = new ArrayList<>();
-        articles.add(articleService.findById(d.getArticleID()));
-        delivery.setArticles(articles);
+        Article article;
+        article = articleService.findById(d.getArticleID());
+        delivery.setArticle(article);
         delivery.setPrice(d.getPrice());
         delivery.setDeliveryState(DeliveryState.CREATED);
         deliveryService.create(delivery);
@@ -83,7 +81,7 @@ public class DeliveryFacadeImpl implements DeliveryFacade{
 
     @Override
     public List<DeliveryDTO> reorderCouriersDeliveries(PersonDTO courier) {
-        Person mappedPerson = beanMappingService.mapTo(courier, Person.class);
+        Person mappedPerson = personService.findById(courier.getId());
         return beanMappingService.mapTo(deliveryService.reorderCouriersDeliveries(mappedPerson),DeliveryDTO.class);
     }
     

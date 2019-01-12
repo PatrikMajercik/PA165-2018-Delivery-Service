@@ -83,7 +83,7 @@ public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.initMocks(this);
         when(personService.findById(person1.getId())).thenReturn(person1);
         when(personService.findPersonByName(person1.getName())).thenReturn(Arrays.asList(person1));
-        when(personService.findPersonByEmail(person2.getEmail())).thenReturn(Arrays.asList(person2));
+        when(personService.findPersonByEmail(person2.getEmail())).thenReturn(person2);
         when(personService.findAll()).thenReturn(Arrays.asList(person1, person2));
     }
 
@@ -127,11 +127,10 @@ public class PersonFacadeImplTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void findByEmailTest() {
-        List<PersonDTO> personDTOs = personFacade.findPersonByEmail(person2.getEmail());
+        PersonDTO personDTOs = personFacade.findPersonByEmail(person2.getEmail());
         verify(personService).findPersonByEmail(person2.getEmail());
-        assertEquals(1, personDTOs.size());
-        List<Person> people = beanMappingService.mapTo(personDTOs, Person.class);
-        assertTrue(people.contains(person2));
+        Person people = beanMappingService.mapTo(personDTOs, Person.class);
+        assertTrue(people.equals(person2));
     }
 
     @Test

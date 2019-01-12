@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static java.util.Arrays.asList;
@@ -72,9 +73,9 @@ public class DeliveryFacadeTest extends AbstractTestNGSpringContextTests {
 
         delivery1.setCustomer(p1);
         delivery1.setCourier(p2);
-
         delivery2.setCustomer(p2);
         delivery2.setCourier(p1);
+        delivery1.setOrdered(LocalDate.now());
         this.deliveryDTO1 = beanMappingService.mapTo(delivery1, DeliveryDTO.class);
         this.deliveryDTO2 = beanMappingService.mapTo(delivery2, DeliveryDTO.class);
         MockitoAnnotations.initMocks(this);
@@ -111,5 +112,6 @@ public class DeliveryFacadeTest extends AbstractTestNGSpringContextTests {
         assertTrue(deliveryFacade.findAll().contains(deliveryDTO1));
         assertTrue(deliveryFacade.findAll().contains(deliveryDTO2));
     }
+
 
 }

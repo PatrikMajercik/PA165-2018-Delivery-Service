@@ -17,6 +17,14 @@ public interface DeliveryService {
     public void create(Delivery d);
     
     /**
+     * Create Delivery d
+     * 
+     * @param d 
+     */
+    public void createOld(Delivery d);
+    
+    
+    /**
      * Update Deivery d
      * 
      * @param d 

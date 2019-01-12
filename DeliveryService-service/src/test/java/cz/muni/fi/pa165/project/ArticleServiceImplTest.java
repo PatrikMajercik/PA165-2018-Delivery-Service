@@ -72,7 +72,7 @@ public class ArticleServiceImplTest extends AbstractTransactionalTestNGSpringCon
 
     @Test
     public void testRemoveArticle() {
-        articleService.delete(article1.getId());
+        articleService.delete(article1);
         verify(articleDao).delete(article1);
     }
 

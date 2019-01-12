@@ -46,4 +46,10 @@ public class Person implements Serializable {
     @NotNull
     @Column(nullable = false)
     private String email;
+    
+    @NotNull
+    private String passwordHash;
+    
+    @NotNull
+    private boolean admin;
 }

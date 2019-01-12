@@ -13,11 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 /**
  * TODO: create javadoc *
@@ -73,27 +78,27 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Address address3 = address(Address.builder().city("Brno").postalCode("60600").street("Matouci").streetNumber("1").build());
         Address address4 = address(Address.builder().city("Karvina").postalCode("84522").street("Kefirova").streetNumber("2").build());
         Address address5 = address(Address.builder().city("Brno").postalCode("60600").street("Botanicka").streetNumber("150").build());
-        Address address6 = address(Address.builder().city("Karvina").postalCode("63544").street("Trnavska").streetNumber("36").build());
+        Address address6 = address(Address.builder().city("Brno").postalCode("63544").street("Trnavska").streetNumber("36").build());
         Address address7 = address(Address.builder().city("Praha").postalCode("69857").street("Kefirova").streetNumber("478").build());
         Address address8 = address(Address.builder().city("Zlin").postalCode("03609").street("Botanicka").streetNumber("2").build());
 
-        Person person1 = person(Person.builder().name("Patrik Majercik").email("dusan@gmail.com").phoneNumber("+421090826564").address(address1).build());
-        Person person2 = person(Person.builder().name("Fero Kral").email("krava@gmail.com").phoneNumber("+421590826564").address(address2).build());
-        Person person3 = person(Person.builder().name("Los Characteros").email("trava@gmail.com").phoneNumber("+421074165644").address(address3).build());
-        Person person4 = person(Person.builder().name("Severus Snape").email("drevo@gmail.com").phoneNumber("+421090654221").address(address4).build());
-        Person person5 = person(Person.builder().name("Laci Strajk").email("clivo@gmail.com").phoneNumber("+421094895647").address(address5).build());
-        Person person6 = person(Person.builder().name("Albus Dumbledore").email("myjava@gmail.com").phoneNumber("+421054621564").address(address6).build());
-        Person person7 = person(Person.builder().name("Harry Potter").email("krivo@gmail.com").phoneNumber("+421458852654").address(address7).build());
-        Person person8 = person(Person.builder().name("Ron Weasley").email("serenada@gmail.com").phoneNumber("+421154895640").address(address8).build());
+        Person person1 = person(Person.builder().name("Patrik Majercik").email("dusan@gmail.com").phoneNumber("+421090826564").address(address1).admin(true).build(), "admin");
+        Person person2 = person(Person.builder().name("Fero Kral").email("krava@gmail.com").phoneNumber("+421590826564").address(address2).admin(false).build(), "pleb");
+        Person person3 = person(Person.builder().name("Los Characteros").email("trava@gmail.com").phoneNumber("+421074165644").address(address3).admin(false).build(), "pleb");
+        Person person4 = person(Person.builder().name("Severus Snape").email("drevo@gmail.com").phoneNumber("+421090654221").address(address4).admin(false).build(), "pleb");
+        Person person5 = person(Person.builder().name("Laci Strajk").email("clivo@gmail.com").phoneNumber("+421094895647").address(address5).admin(false).build(), "pleb");
+        Person person6 = person(Person.builder().name("Albus Dumbledore").email("myjava@gmail.com").phoneNumber("+421054621564").address(address6).admin(false).build(), "pleb");
+        Person person7 = person(Person.builder().name("Harry Potter").email("krivo@gmail.com").phoneNumber("+421458852654").address(address7).admin(false).build(), "pleb");
+        Person person8 = person(Person.builder().name("Ron Weasley").email("serenada@gmail.com").phoneNumber("+421154895640").address(address8).admin(false).build(), "pleb");
 
-        Delivery delivery1 = delivery(person1, person2, articleList1, null, null, new BigDecimal(250), DeliveryState.DELIVERED);
-        Delivery delivery2 = delivery(person2, person3, articleList2, null, null, new BigDecimal(150), DeliveryState.DELIVERED);
-        Delivery delivery3 = delivery(person3, person2, articleList3, null, null, new BigDecimal(2550), DeliveryState.DELIVERED);
-        Delivery delivery4 = delivery(person4, person2, articleList4, null, null, new BigDecimal(50), DeliveryState.DELIVERED);
-        Delivery delivery5 = delivery(person5, person2, articleList5, null, null, new BigDecimal(150), DeliveryState.DELIVERED);
-        Delivery delivery6 = delivery(person6, person2, articleList6, null, null, new BigDecimal(350), DeliveryState.DELIVERED);
-        Delivery delivery7 = delivery(person7, person2, articleList7, null, null, new BigDecimal(450), DeliveryState.DELIVERED);
-        Delivery delivery8 = delivery(person8, person2, articleList8, null, null, new BigDecimal(650), DeliveryState.DELIVERED);
+        Delivery delivery1 = delivery(person1, person2, article1, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(250), DeliveryState.DELIVERED);
+        Delivery delivery2 = delivery(person2, person3, article2, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(150), DeliveryState.DELIVERED);
+        Delivery delivery3 = delivery(person3, person2, article3, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(2550), DeliveryState.DELIVERED);
+        Delivery delivery4 = delivery(person4, person2, article4, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(50), DeliveryState.DELIVERED);
+        Delivery delivery5 = delivery(person5, person2, article5, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(150), DeliveryState.DELIVERED);
+        Delivery delivery6 = delivery(person6, person2, article6, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(350), DeliveryState.DELIVERED);
+        Delivery delivery7 = delivery(person7, person2, article7, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(450), DeliveryState.DELIVERED);
+        Delivery delivery8 = delivery(person8, person2, article8, LocalDate.now().minusDays(6), LocalDate.now().minusDays(1), new BigDecimal(650), DeliveryState.DELIVERED);
 
         log.info("Sample data loaded was completed successfully.");
     }
@@ -108,9 +113,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         return article;
     }
 
-    private Delivery delivery(Person customer, Person courier, List<Article> articles, LocalDateTime ordered, LocalDateTime delivered, BigDecimal price, DeliveryState deliveryState) {
+    private Delivery delivery(Person customer, Person courier, Article article, LocalDate ordered, LocalDate delivered, BigDecimal price, DeliveryState deliveryState) {
         Delivery delivery = new Delivery();
-        delivery.setArticles(articles);
+        delivery.setArticle(article);
         delivery.setCourier(courier);
         delivery.setCustomer(customer);
         delivery.setOrdered(ordered);
@@ -118,13 +123,12 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         delivery.setPrice(price);
         delivery.setDeliveryState(deliveryState);
 
-        deliveryService.create(delivery);
-
+        deliveryService.createOld(delivery);
         return delivery;
     }
 
-    private Person person(Person person) {
-        personService.create(person);
+    private Person person(Person person, String pass) {
+        personService.createWithPass(person, pass);
         return person;
     }
 
@@ -132,4 +136,5 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         addressService.create(address);
         return address;
     }
+   
 }

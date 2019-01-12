@@ -42,7 +42,7 @@ public interface ArticleService {
     /**
      * Remove Article specified as parameter
      *
-     * @param id
+     * @param article
      */
-    void delete(Long id);
+    void delete(Article article);
 }

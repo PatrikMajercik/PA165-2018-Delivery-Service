@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.project.facade;
 import cz.muni.fi.pa165.project.AddressService;
 import cz.muni.fi.pa165.project.BeanMappingService;
 import cz.muni.fi.pa165.project.PersonService;
+import cz.muni.fi.pa165.project.dto.PersonAuthenticateDTO;
 import cz.muni.fi.pa165.project.dto.PersonEditDTO;
 import cz.muni.fi.pa165.project.dto.PersonDTO;
 import cz.muni.fi.pa165.project.entity.Person;
@@ -73,11 +74,23 @@ public class PersonFacadeImpl implements PersonFacade {
         return beanMappingService.mapTo(personService.findPersonByName(name), PersonDTO.class);
     }
 
-    public List<PersonDTO> findPersonByEmail(String email) {
+    public PersonDTO findPersonByEmail(String email) {
         return beanMappingService.mapTo(personService.findPersonByEmail(email), PersonDTO.class);
     }
 
     public List<PersonDTO> findAll() {
         return beanMappingService.mapTo(personService.findAll(), PersonDTO.class);
+    }
+    
+    
+    @Override
+    public boolean authenticate(PersonAuthenticateDTO u) {
+        return personService.authenticate(
+                personService.findById(u.getPersonId()), u.getPassword());
+    }
+
+    @Override
+    public boolean isAdmin(PersonDTO u) {
+        return personService.isAdmin(beanMappingService.mapTo(u, Person.class));
     }
 }

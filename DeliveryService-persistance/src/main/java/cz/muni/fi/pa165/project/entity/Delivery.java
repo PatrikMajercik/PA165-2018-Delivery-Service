@@ -9,12 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 /**
  * Delivery entity
@@ -39,11 +37,11 @@ public class Delivery {
     private DeliveryState deliveryState;
     
     @Nullable
-    private LocalDateTime ordered;
+    private LocalDate ordered;
     
 
     @Nullable
-    private LocalDateTime delivered;
+    private LocalDate delivered;
     
     @NotNull
     @Column(nullable = false)
@@ -55,7 +53,8 @@ public class Delivery {
     @ManyToOne
     private Person customer;
     
-    @OneToMany
-    @JoinColumn(name="fk_id")
-    private List<Article> articles;
+    //@OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne
+    //@JoinColumn(name="fk_id")
+    private Article article;
 }

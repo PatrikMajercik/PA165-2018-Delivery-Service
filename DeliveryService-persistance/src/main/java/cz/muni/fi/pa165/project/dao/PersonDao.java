@@ -66,7 +66,7 @@ public interface PersonDao {
      * @throws IllegalArgumentException if email is null
      * @throws IllegalArgumentException if email is empty
      */
-    List<Person> findPersonByEmail(@NotNull @NotBlank String email) throws IllegalArgumentException;
+    Person findPersonByEmail(@NotNull @NotBlank String email) throws IllegalArgumentException;
 
     /**
      * Return all people in database

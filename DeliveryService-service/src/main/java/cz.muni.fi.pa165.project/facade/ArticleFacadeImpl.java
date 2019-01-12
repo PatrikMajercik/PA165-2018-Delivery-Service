@@ -46,7 +46,8 @@ public class ArticleFacadeImpl implements ArticleFacade {
     }
 
     @Override
-    public void delete(Long id) {
-        articleService.delete(id);
+    public void delete(ArticleDTO a) {
+        Article mappedArticle = beanMappingService.mapTo(a, Article.class);
+        articleService.delete(mappedArticle);
     }
 }

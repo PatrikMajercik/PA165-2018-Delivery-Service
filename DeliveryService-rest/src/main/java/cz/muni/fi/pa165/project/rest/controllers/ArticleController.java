@@ -75,7 +75,7 @@ public class ArticleController {
     public void deleteArticle(@PathVariable("id") long id) throws Exception {
         logger.debug("rest deleteArticle({})", id);
         try {
-            articleFacade.delete(id);
+            articleFacade.delete(articleFacade.findById(id));
         } catch (Exception ex) {
             throw new ResourceNotFoundException();
         }

@@ -155,6 +155,8 @@ public class PersonDaoTest extends AbstractTestNGSpringContextTests {
                 .email("pmajercik@centrum.sk")
                 .name("Paprik")
                 .phoneNumber("+421918207555")
+                .passwordHash("ccccc")
+                .admin(true)
                 .build();
     }
 
@@ -171,6 +173,8 @@ public class PersonDaoTest extends AbstractTestNGSpringContextTests {
                 .email("pmajercik@centrum.sk")
                 .name("Paprik")
                 .phoneNumber("+421918207555")
+                .passwordHash("ccccc")
+                .admin(true)
                 .build();
     }
 }

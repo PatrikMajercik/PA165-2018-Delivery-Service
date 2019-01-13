@@ -36,7 +36,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Override
     public void update(Delivery d) {
         if (d.getDeliveryState() == DeliveryState.DELIVERED) {
-            d.setOrdered(LocalDate.now());
+            d.setDelivered(LocalDate.now());
         }
         deliveryDao.update(d);
     }
